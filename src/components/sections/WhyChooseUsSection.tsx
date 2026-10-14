@@ -12,20 +12,22 @@ import {
   Sparkles,
 } from 'lucide-react';
 
+import Image from 'next/image';
+
 export const WhyChooseUsSection: React.FC = () => {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-white relative">
+    <section id="about" className="py-16 lg:py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-4">
+        <div className="max-w-3xl mb-12 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-3">
             THE CONNECTING CUBES ADVANTAGE
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight leading-tight">
             Why Businesses Choose Connecting Cubes
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#526478] leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg text-[#526478] leading-relaxed">
             Coordinated freight logistics engineered around transparency, responsive communication, and dependable execution across India.
           </p>
         </div>
@@ -33,10 +35,19 @@ export const WhyChooseUsSection: React.FC = () => {
         {/* Asymmetric Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
-          {/* Spotlight Feature Card (Spans 5 cols on lg) */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#0B2A4A] via-[#0E365E] to-[#1261A0] rounded-3xl p-8 sm:p-10 text-white shadow-xl flex flex-col justify-between relative overflow-hidden">
-            {/* Background geometric accents */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-2xl pointer-events-none" />
+          {/* Spotlight Feature Card with Authentic Logistics Photo (Spans 5 cols on lg) */}
+          <div className="lg:col-span-5 bg-gradient-to-br from-[#0B2A4A] via-[#0E365E] to-[#1261A0] rounded-3xl p-8 sm:p-10 text-white shadow-xl flex flex-col justify-between relative overflow-hidden group">
+            {/* Background authentic delivery image overlay */}
+            <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-25 transition-opacity duration-500">
+              <Image
+                src="/images/delivery.jpg"
+                alt="Connecting Cubes Pan-India Delivery"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 40vw"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B2A4A] via-[#0B2A4A]/80 to-transparent z-0" />
             
             <div className="relative z-10 space-y-6">
               <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md text-sky-300 flex items-center justify-center border border-white/10">

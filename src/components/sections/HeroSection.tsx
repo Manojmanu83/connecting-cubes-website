@@ -32,52 +32,134 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 bg-gradient-to-b from-[#F7FAFC] via-[#F1F6FB] to-white overflow-hidden"
+      className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 bg-gradient-to-b from-[#061729] via-[#0B2A4A] to-[#0E365E] text-white overflow-hidden"
     >
-      {/* Subtle background grid pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(#0B2A4A 1px, transparent 1px)`,
-          backgroundSize: '24px 24px',
-        }}
-        aria-hidden="true"
-      />
+      {/* 1. Ambient Lighting & Restrained Gradient Atmosphere */}
+      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#1261A0]/25 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-10 right-1/4 w-[450px] h-[450px] bg-[#1E88E5]/20 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Ambient gradient circles */}
-      <div className="absolute top-12 left-1/4 w-96 h-96 bg-[#1261A0]/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#1E88E5]/5 rounded-full blur-3xl pointer-events-none" />
+      {/* 2. Fine Background Logistics Route Mesh & Connected Nodes */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none select-none opacity-40"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <defs>
+          <linearGradient id="heroLineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#1E88E5" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="#64B5F6" stopOpacity="0.2" />
+          </linearGradient>
+        </defs>
+
+        {/* Fine Animated Route Lines between nodes */}
+        <g className="animate-route">
+          <line x1="8%" y1="28%" x2="28%" y2="38%" stroke="url(#heroLineGrad)" strokeWidth="1" strokeDasharray="4 4" />
+          <line x1="28%" y1="38%" x2="45%" y2="24%" stroke="url(#heroLineGrad)" strokeWidth="1" strokeDasharray="4 4" />
+          <line x1="28%" y1="38%" x2="35%" y2="68%" stroke="url(#heroLineGrad)" strokeWidth="1" strokeDasharray="4 4" />
+          <line x1="45%" y1="24%" x2="68%" y2="35%" stroke="url(#heroLineGrad)" strokeWidth="1" strokeDasharray="4 4" />
+          <line x1="35%" y1="68%" x2="60%" y2="62%" stroke="url(#heroLineGrad)" strokeWidth="1" strokeDasharray="4 4" />
+          <line x1="60%" y1="62%" x2="82%" y2="52%" stroke="url(#heroLineGrad)" strokeWidth="1" strokeDasharray="4 4" />
+          <line x1="68%" y1="35%" x2="88%" y2="30%" stroke="url(#heroLineGrad)" strokeWidth="1" strokeDasharray="4 4" />
+        </g>
+
+        {/* Glowing Location Nodes */}
+        {[
+          { cx: '8%', cy: '28%', r: 3 },
+          { cx: '28%', cy: '38%', r: 4 },
+          { cx: '45%', cy: '24%', r: 3.5 },
+          { cx: '35%', cy: '68%', r: 3 },
+          { cx: '60%', cy: '62%', r: 4 },
+          { cx: '68%', cy: '35%', r: 3.5 },
+          { cx: '82%', cy: '52%', r: 3 },
+          { cx: '88%', cy: '30%', r: 4 },
+        ].map((node, i) => (
+          <g key={i}>
+            <circle cx={node.cx} cy={node.cy} r={node.r + 4} fill="#1E88E5" opacity="0.3" className="motion-safe:animate-pulse" />
+            <circle cx={node.cx} cy={node.cy} r={node.r} fill="#FFFFFF" />
+          </g>
+        ))}
+      </svg>
+
+      {/* 3. Small Number of Slowly Drifting Constellation Particles */}
+      <div className="absolute inset-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+        <div className="absolute top-[20%] left-[15%] w-1.5 h-1.5 rounded-full bg-sky-300/40 animate-particle-1" />
+        <div className="absolute top-[35%] left-[40%] w-1 h-1 rounded-full bg-white/50 animate-particle-2" />
+        <div className="absolute top-[65%] left-[25%] w-2 h-2 rounded-full bg-[#1E88E5]/30 animate-particle-1" />
+        <div className="absolute top-[18%] right-[30%] w-1.5 h-1.5 rounded-full bg-sky-200/40 animate-particle-2" />
+        <div className="absolute top-[50%] right-[15%] w-1 h-1 rounded-full bg-white/40 animate-particle-1" />
+        <div className="absolute top-[75%] right-[35%] w-2 h-2 rounded-full bg-[#64B5F6]/30 animate-particle-2" />
+      </div>
+
+      {/* 4. Subtle Cargo Aircraft Silhouette Traversing High-Altitude Background */}
+      <div
+        className="absolute top-[8%] left-0 pointer-events-none select-none z-0 animate-flight"
+        aria-hidden="true"
+      >
+        <svg
+          width="110"
+          height="38"
+          viewBox="0 0 160 55"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="text-sky-300 drop-shadow-md"
+        >
+          {/* Faint contrail vapor trail */}
+          <line x1="0" y1="28" x2="60" y2="28" stroke="currentColor" strokeWidth="1.2" strokeOpacity="0.25" strokeDasharray="3 4" />
+          {/* Cargo Heavy Transport Silhouette */}
+          <path
+            d="M60 28 L95 24 L135 25 Q148 26 155 28 Q148 30 135 31 L95 32 Z"
+            fill="currentColor"
+            fillOpacity="0.3"
+          />
+          {/* Main Cargo Wings */}
+          <path
+            d="M92 24 L75 4 L86 4 L112 24 Z"
+            fill="currentColor"
+            fillOpacity="0.4"
+          />
+          <path
+            d="M92 32 L75 52 L86 52 L112 32 Z"
+            fill="currentColor"
+            fillOpacity="0.4"
+          />
+          {/* Tail Stabilizer */}
+          <path
+            d="M64 27 L55 15 L62 15 L72 27 Z"
+            fill="currentColor"
+            fillOpacity="0.4"
+          />
+        </svg>
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
-          {/* LEFT COLUMN: Core Narrative & Actions */}
+          {/* LEFT COLUMN: Hero Headline & Editorial Composition */}
           <div className="lg:col-span-7 space-y-7">
             {/* Eyebrow badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAF4FC] border border-[#1E88E5]/20 text-[#1261A0] text-xs font-bold tracking-wider uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#1E88E5]" />
-              LOGISTICS • CONNECTIVITY • RELIABILITY
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-sky-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#1E88E5] animate-pulse" />
+              PAN-INDIA FREIGHT COORDINATION
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold text-[#0B2A4A] tracking-tight leading-[1.12]">
-              Reliable Logistics.{' '}
-              <span className="text-[#1261A0] inline-block">
-                Connected Across India.
+            {/* Exact Two-Line Headline */}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] font-black text-white tracking-tight leading-[0.93] select-none">
+              <span className="block drop-shadow-md">Reliable.</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#64B5F6] via-[#90CAF9] to-white -mt-1 sm:-mt-2 drop-shadow-sm">
+                Connected.
               </span>
             </h1>
 
-            {/* Supporting Text */}
-            <p className="text-lg sm:text-xl text-[#526478] leading-relaxed max-w-2xl font-normal">
-              End-to-end logistics coordination connecting businesses with reliable
-              transportation solutions across road, rail, and air.
+            {/* Exact Supporting Text */}
+            <p className="text-base sm:text-lg lg:text-xl text-sky-100/90 leading-relaxed max-w-xl font-normal">
+              End-to-end logistics coordination across India, connecting businesses with transportation solutions across road, rail and air.
             </p>
 
             {/* Call to Actions */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <a
                 href="#services"
-                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#1261A0] hover:bg-[#0E4E82] text-white text-base font-bold shadow-md hover:shadow-lg transition-all active:scale-[0.98]"
+                className="btn-interactive inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#1261A0] hover:bg-[#1E88E5] text-white text-base font-bold shadow-lg hover:shadow-xl"
               >
                 <span>Explore Our Services</span>
                 <ArrowRight className="w-4 h-4" />
@@ -85,60 +167,53 @@ export const HeroSection: React.FC = () => {
 
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#0B2A4A] text-base font-bold border border-slate-300 hover:border-[#1261A0] transition-all"
+                className="btn-interactive inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-base font-bold border border-white/20 hover:border-white/40 backdrop-blur-md"
               >
                 <span>Talk to Our Team</span>
               </a>
             </div>
 
-            {/* Restrained Trust Line */}
-            <div className="pt-4 border-t border-slate-200/80">
-              <div className="flex flex-wrap items-center gap-y-2 text-xs sm:text-sm font-semibold text-[#526478]">
+            {/* Restrained Trust Points */}
+            <div className="pt-6 border-t border-white/15">
+              <div className="flex flex-wrap items-center gap-y-2 text-xs sm:text-sm font-semibold text-slate-300">
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-[#1261A0]" />
-                  Pan-India Reach
+                  <CheckCircle className="w-4 h-4 text-sky-400" />
+                  20,000+ PIN Codes Reach
                 </span>
-                <span className="mx-2 text-slate-300 hidden sm:inline">•</span>
+                <span className="mx-3 text-slate-500 hidden sm:inline">•</span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-[#1261A0]" />
-                  Multiple Transport Options
+                  <CheckCircle className="w-4 h-4 text-sky-400" />
+                  Road, Rail & Air Multimodal
                 </span>
-                <span className="mx-2 text-slate-300 hidden sm:inline">•</span>
+                <span className="mx-3 text-slate-500 hidden sm:inline">•</span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle className="w-4 h-4 text-[#1261A0]" />
-                  Dedicated Coordination
+                  <CheckCircle className="w-4 h-4 text-sky-400" />
+                  Single Point Coordination
                 </span>
               </div>
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Visual Graphic + Floating Interactive Panel */}
+          {/* RIGHT COLUMN: Translucent Shipment Tracking & Quotation Panel */}
           <div className="lg:col-span-5 relative">
-            {/* Visual Backing Graphic: Logistics Coordination Node Graphic */}
-            <div className="relative rounded-2xl bg-gradient-to-br from-[#0B2A4A] via-[#0E365E] to-[#1261A0] p-6 sm:p-8 text-white shadow-2xl overflow-hidden border border-slate-800">
-              {/* Background decorative transport grid */}
-              <div className="absolute -right-8 -bottom-8 w-48 h-48 opacity-10 pointer-events-none">
-                <svg viewBox="0 0 100 100" fill="currentColor">
-                  <polygon points="50,5 95,28 95,72 50,95 5,72 5,28" />
-                </svg>
-              </div>
-
-              {/* Badges of Transport Coordination */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+            <div className="relative rounded-2xl bg-white/10 backdrop-blur-xl p-6 sm:p-7 text-white shadow-2xl border border-white/20 overflow-hidden">
+              
+              {/* Header inside Panel */}
+              <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/15">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  <span className="text-xs uppercase tracking-wider font-bold text-slate-200">
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+                  <span className="text-xs uppercase tracking-wider font-bold text-sky-200">
                     Dispatch Coordination Desk
                   </span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-sky-200 bg-white/10 px-2.5 py-1 rounded-full backdrop-blur-sm">
-                  <Clock className="w-3 h-3" />
+                <div className="flex items-center gap-1.5 text-xs text-sky-200 bg-white/10 px-2.5 py-1 rounded-full border border-white/10">
+                  <Clock className="w-3 h-3 text-sky-300" />
                   <span>Pan-India Transit</span>
                 </div>
               </div>
 
-              {/* Mode indicators */}
-              <div className="grid grid-cols-3 gap-2 mb-6">
+              {/* Multimodal Transport Indicators */}
+              <div className="grid grid-cols-3 gap-2 mb-5">
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2.5 text-center border border-white/10">
                   <Truck className="w-4 h-4 mx-auto mb-1 text-sky-300" />
                   <span className="text-[11px] font-semibold block text-white">Road</span>
@@ -156,11 +231,11 @@ export const HeroSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Polished White Floating Panel / Card */}
-              <div className="bg-white rounded-xl p-5 sm:p-6 text-[#17202A] shadow-lg border border-slate-100">
+              {/* Clean White Floating Action Card */}
+              <div className="bg-white rounded-xl p-5 text-[#17202A] shadow-xl border border-slate-100">
                 
                 {/* 1. TRACK YOUR SHIPMENT */}
-                <div className="mb-5">
+                <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
                     <h2 className="text-xs font-extrabold uppercase tracking-wider text-[#0B2A4A] flex items-center gap-1.5">
                       <Search className="w-3.5 h-3.5 text-[#1261A0]" />
@@ -180,7 +255,7 @@ export const HeroSection: React.FC = () => {
                           setConsignmentInput(e.target.value);
                           if (inputError) setInputError('');
                         }}
-                        placeholder="Enter consignment number..."
+                        placeholder="Enter consignment or LR number..."
                         className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-slate-300 focus:border-[#1261A0] focus:ring-1 focus:ring-[#1261A0] text-slate-900 placeholder-slate-400 transition-all outline-none"
                       />
                     </div>
@@ -189,21 +264,21 @@ export const HeroSection: React.FC = () => {
                     )}
                     <button
                       type="submit"
-                      className="w-full py-2.5 px-4 rounded-lg bg-[#0B2A4A] hover:bg-[#1261A0] text-white text-xs font-bold uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                      className="btn-interactive w-full py-2.5 px-4 rounded-lg bg-[#0B2A4A] hover:bg-[#1261A0] text-white text-xs font-bold uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5 shadow-sm"
                     >
                       <Search className="w-3.5 h-3.5" />
-                      <span>Track Shipment</span>
+                      <span>Track Consignment</span>
                     </button>
                   </form>
                 </div>
 
                 {/* Subtle Divider */}
-                <div className="relative my-4">
+                <div className="relative my-3">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-slate-200" />
                   </div>
                   <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-white px-3 text-[10px] font-bold text-slate-400 tracking-wider">
+                    <span className="bg-white px-2.5 text-[10px] font-bold text-slate-400 tracking-wider">
                       OR
                     </span>
                   </div>
@@ -215,12 +290,11 @@ export const HeroSection: React.FC = () => {
                     NEED TO MOVE CARGO?
                   </h3>
                   <p className="text-xs text-[#526478] mb-3 leading-relaxed">
-                    Have cargo to transport across India? Share your origin, destination,
-                    and freight requirements for tailored options.
+                    Share your pickup, destination, and freight details with our team for tailored coordination options.
                   </p>
                   <a
                     href="#quote"
-                    className="w-full py-2.5 px-4 rounded-lg bg-[#1261A0] hover:bg-[#0E4E82] text-white text-xs font-bold uppercase tracking-wide transition-colors flex items-center justify-center gap-2 shadow-sm"
+                    className="btn-interactive w-full py-2.5 px-4 rounded-xl bg-[#1261A0] hover:bg-[#0E4E82] text-white text-xs font-bold uppercase tracking-wide transition-colors flex items-center justify-center gap-2 shadow-sm"
                   >
                     <span>Request a Quote</span>
                     <ArrowRight className="w-3.5 h-3.5" />

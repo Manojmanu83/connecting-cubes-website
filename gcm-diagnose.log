@@ -1,0 +1,186 @@
+﻿Diagnose log at 2026-10-11T07:53:58Z
+
+AppPath: C:\Program Files\Git\mingw64\bin\git-credential-manager.exe
+InstallDir: C:\Program Files\Git\mingw64\bin\
+Version: 2.5.1+90d5f897f164a8fe07d2aa3bf7db439b0b4e03ea
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Windows
+OSVersion: 10.0 (build 26200)
+Reading environment variables... OK
+ Variables:
+HOMEPATH=\Users\91831
+DriverData=C:\Windows\System32\Drivers\DriverData
+COMPUTERNAME=LAPTOP-V1MFASFE
+AGY_BROWSER_ACTIVE_PORT_FILE=C:\Users\91831\AppData\Roaming\Antigravity\DevToolsActivePort
+GIT_TRACE2_PARENT_SID=07955b4d-68f6-4140-957e-30b1f07290b1
+EFC_5004_1592913036=1
+OneDrive=C:\Users\91831\OneDrive
+SESSIONNAME=Console
+TMP=C:\Users\91831\AppData\Local\Temp
+PROCESSOR_REVISION=8c01
+PROCESSOR_ARCHITECTURE=x86
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+VLC_PLUGIN_PATH=C:\Program Files\VideoLAN\VLC\plugins
+USERNAME=91831
+GIT_EXEC_PATH=C:/Program Files/Git/mingw64/libexec/git-core
+VW6DT=1
+TEMP=C:\Users\91831\AppData\Local\Temp
+LOCALAPPDATA=C:\Users\91831\AppData\Local
+MSYSTEM=MINGW64
+TERM=xterm-256color
+ProgramW6432=C:\Program Files
+USERDOMAIN=LAPTOP-V1MFASFE
+Path=C:/Program Files/Git/mingw64/libexec/git-core;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\91831\bin;C:\Users\91831\AppData\Roaming\Antigravity\bin;C:\Program Files\VideoLAN\VLC\plugins;C:\app\91831\product\11.2.0\dbhome_1\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Users\91831\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\Scripts;C:\Program Files\MySQL\MySQL Server 8.0\bin;C:\Program Files\PuTTY\;C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\Azure Data Studio\bin;C:\Program Files\Java\jdk1.8.0_202\bin;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk-17\bin;C:\Users\91831\Downloads\apache-maven-3.9.9-bin\apache-maven-3.9.9\bin;C:\MinGW\bin;C:\Users\91831\Downloads\terraform_1.11.4_windows_386;C:\Program Files\WireGuard\;C:\Program Files\Tesseract-OCR;C:\Users\91831\Downloads\Release-25.07.0-0\poppler-25.07.0\Library\bin;C:\Program Files\Amazon\AWSCLIV2\;C:\Program Files\VideoLAN\VLC;C:\Program Files\dotnet\;C:\Program Files\Tailscale\;C:\Users\91831\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\91831\AppData\Local\Programs\Python\Python312\;C:\Users\91831\.cargo\bin;C:\Users\91831\AppData\Local\Programs\Python\Python314\Scripts\;C:\Users\91831\AppData\Local\Programs\Python\Python314\;C:\Users\91831\AppData\Local\Programs\Python\Python37\Scripts\;C:\Users\91831\AppData\Local\Programs\Python\Python37\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\91831\AppData\Local\Microsoft\WindowsApps;C:\Users\91831\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\91831\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\Scripts;C:\Program Files\Azure Data Studio\bin;C:\Users\91831\AppData\Roaming\npm;C:\Users\91831\AppData\Local\Programs\Windsurf\bin
+PROCESSOR_LEVEL=6
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 140 Stepping 1, GenuineIntel
+TMPDIR=C:\Users\91831\AppData\Local\Temp
+ProgramFiles(x86)=C:\Program Files (x86)
+PUBLIC=C:\Users\Public
+NUMBER_OF_PROCESSORS=8
+CommonProgramFiles=C:\Program Files (x86)\Common Files
+USERDOMAIN_ROAMINGPROFILE=LAPTOP-V1MFASFE
+IGCCSVC_DB=AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAOnpZIcHgE0iXoxPMWehI0gQAAAACAAAAAAAQZgAAAAEAACAAAAAVKvNx8ziMGHB1pVn9bIgieJnY6w7dlH8nmDZYU2HekwAAAAAOgAAAAAIAACAAAAC6mpeLWDedrfTpgwEUMmlgv5trn1l+WA8BbHtN6+aub2AAAADcgjtNgl8EbQN/SmZOxh8S0P1s2jbTdKQPoDNx9rItiSyd+ZbIN/1wlj78njuyiZYmYjnn10GuBI4WqbdZU9i6UkG8C+PwSn4KOaR2osRZo4RvfM16bBLvC9es4Sx7ielAAAAAR7Laft662tX/fcj1bgXtRWKOQv0nFmi5dQsphUI/FXkjQAj9yYsck73Y7ESuxKE5bXdgfB7jlf/6NAA67ItIsQ==
+EFC_5004_2946480783=1
+PLINK_PROTOCOL=ssh
+ProgramData=C:\ProgramData
+MSYS=disable_pcon
+VW6ENV=test
+ProgramFiles=C:\Program Files (x86)
+SystemRoot=C:\WINDOWS
+EFC_5004_4126798990=1
+HOME=C:\Users\91831
+LC_CTYPE=C.UTF-8
+CommonProgramW6432=C:\Program Files\Common Files
+ZES_ENABLE_SYSMAN=1
+LOGONSERVER=\\LAPTOP-V1MFASFE
+USERPROFILE=C:\Users\91831
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+APPDATA=C:\Users\91831\AppData\Roaming
+HOMEDRIVE=C:
+PSModulePath=C:\Users\91831\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules
+AGY_BROWSER_WS_URL=ws://127.0.0.1:62543/devtools/browser/c7dbc1cb-7771-4892-b1a0-7eb62c2ff8d8
+PROCESSOR_ARCHITEW6432=AMD64
+CHROME_DEVTOOLS_MCP_JS=C:\Users\91831\AppData\Local\Programs\antigravity\resources\app.asar.unpacked\node_modules\chrome-devtools-mcp\build\src\bin\chrome-devtools-mcp.js
+GIT_TERMINAL_PROMPT=1
+OS=Windows_NT
+ComSpec=C:\WINDOWS\system32\cmd.exe
+SystemDrive=C:
+windir=C:\WINDOWS
+OneDriveConsumer=C:\Users\91831\OneDrive
+ALLUSERSPROFILE=C:\ProgramData
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is 'C:\Users\91831\AppData\Local\Temp\'...
+Checking basic file I/O...
+Writing to temporary file 'C:\Users\91831\AppData\Local\Temp\eaad4db8bfb29fd1f7df2341'... OK
+Reading from temporary file 'C:\Users\91831\AppData\Local\Temp\eaad4db8bfb29fd1f7df2341'... OK
+Deleting temporary file 'C:\Users\91831\AppData\Local\Temp\eaad4db8bfb29fd1f7df2341'... OK
+Testing IFileSystem instance...
+UserHomePath: C:\Users\91831
+UserDataDirectoryPath: C:\Users\91831\.gcm
+GetCurrentDirectory(): C:\Users\91831\.gemini\antigravity\scratch\connecting-cubes-web
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com...Sending HEAD request to https://example.com... OK
+ OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:59407/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.46.0.windows.1'
+Locating current repository...Git repository at 'C:/Users/91831/.gemini/antigravity/scratch/connecting-cubes-web/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:C:/Program Files/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Program Files/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Program Files/Git/etc/gitconfig	http.sslbackend=openssl
+file:C:/Program Files/Git/etc/gitconfig	http.sslcainfo=C:/Program Files/Git/mingw64/etc/ssl/certs/ca-bundle.crt
+file:C:/Program Files/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Program Files/Git/etc/gitconfig	core.fscache=true
+file:C:/Program Files/Git/etc/gitconfig	core.symlinks=false
+file:C:/Program Files/Git/etc/gitconfig	pull.rebase=false
+file:C:/Program Files/Git/etc/gitconfig	credential.helper=manager
+file:C:/Program Files/Git/etc/gitconfig	credential.https://dev.azure.com.usehttppath=true
+file:C:/Program Files/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/91831/.gitconfig	user.email=manojshetty5769@gmail.com
+file:C:/Users/91831/.gitconfig	user.name=Manojmanu83
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.symlinks=false
+file:.git/config	core.ignorecase=true
+file:.git/config	remote.origin.url=https://github.com/Manojmanu83/connecting-cubes-website.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: True
+Exception: None
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential... OK
+Reading test credential... OK
+Deleting test credential... OK
+
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Flow type is: Auto
+Gathering MSAL token cache data... OK
+CacheDirectory: C:\Users\91831\AppData\Local\.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: C:\Users\91831\AppData\Local\.IdentityService\msal.cache
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: True
+Exception: None
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint... OK
+

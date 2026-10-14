@@ -3,6 +3,8 @@
 import React from 'react';
 import { Truck, Train, Plane, RefreshCw, ArrowRight, CheckCircle2, Shield, AlertCircle } from 'lucide-react';
 
+import Image from 'next/image';
+
 interface ServiceCardData {
   id: string;
   tag: string;
@@ -10,6 +12,7 @@ interface ServiceCardData {
   description: string;
   features: string[];
   icon: React.ElementType;
+  image: string;
   gradient: string;
   modeParam: string;
 }
@@ -28,7 +31,8 @@ const SERVICES: ServiceCardData[] = [
       'Business-to-business cargo movement',
     ],
     icon: Truck,
-    gradient: 'from-[#0B2A4A] to-[#144675]',
+    image: '/images/Indian trucks.jpg',
+    gradient: 'from-[#0B2A4A]/90 to-[#144675]/80',
     modeParam: 'Road',
   },
   {
@@ -44,7 +48,8 @@ const SERVICES: ServiceCardData[] = [
       'Subject to rake & terminal availability',
     ],
     icon: Train,
-    gradient: 'from-[#0E365E] to-[#1261A0]',
+    image: '/images/train.jpg',
+    gradient: 'from-[#0E365E]/90 to-[#1261A0]/80',
     modeParam: 'Rail',
   },
   {
@@ -60,7 +65,8 @@ const SERVICES: ServiceCardData[] = [
       'Subject to flight routes & cargo restrictions',
     ],
     icon: Plane,
-    gradient: 'from-[#1261A0] to-[#1E88E5]',
+    image: '/images/aircraft.jpg',
+    gradient: 'from-[#1261A0]/90 to-[#1E88E5]/80',
     modeParam: 'Air',
   },
   {
@@ -76,62 +82,73 @@ const SERVICES: ServiceCardData[] = [
       'Dedicated logistics desk support',
     ],
     icon: RefreshCw,
-    gradient: 'from-[#0B2A4A] to-[#1E88E5]',
+    image: '/images/coordination.webp',
+    gradient: 'from-[#0B2A4A]/90 to-[#1E88E5]/80',
     modeParam: 'Not Sure',
   },
 ];
 
 export const ServicesSection: React.FC = () => {
   return (
-    <section id="services" className="py-20 lg:py-28 bg-[#F7FAFC] relative">
+    <section id="services" className="py-16 lg:py-24 bg-[#F7FAFC] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-4">
+        <div className="max-w-3xl mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-3">
             TRANSPORTATION CAPABILITIES
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight leading-tight">
             Logistics Solutions That Move Your Business Forward
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#526478] leading-relaxed">
-            Explore transportation and coordination options designed around your shipment requirements.
+          <p className="mt-3 text-base sm:text-lg text-[#526478] leading-relaxed">
+            Explore transportation and coordination options designed around your shipment requirements across road, rail, and air.
           </p>
         </div>
 
         {/* 4 Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SERVICES.map((service) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.id}
-                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1"
+                className="bg-white rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl transition-all duration-200 flex flex-col justify-between overflow-hidden group hover:-translate-y-0.5"
               >
                 <div>
-                  {/* Card Header Banner */}
-                  <div className={`p-6 bg-gradient-to-r ${service.gradient} text-white relative`}>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-white/20 backdrop-blur-sm text-white">
-                        {service.tag}
-                      </span>
-                      <div className="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-sm flex items-center justify-center text-white">
-                        <Icon className="w-5 h-5" />
+                  {/* Card Header Banner with Authentic Logistics Image */}
+                  <div className="relative h-44 overflow-hidden text-white">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${service.gradient} mix-blend-multiply`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent p-5 flex flex-col justify-between">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded bg-black/40 backdrop-blur-md text-white border border-white/10">
+                          {service.tag}
+                        </span>
+                        <div className="w-8 h-8 rounded-lg bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/20">
+                          <Icon className="w-4 h-4" />
+                        </div>
                       </div>
+                      <h3 className="text-lg font-bold text-white tracking-tight drop-shadow-sm">
+                        {service.title}
+                      </h3>
                     </div>
-                    <h3 className="text-xl font-bold text-white tracking-tight">
-                      {service.title}
-                    </h3>
                   </div>
 
                   {/* Body Content */}
-                  <div className="p-6">
-                    <p className="text-xs sm:text-sm text-[#526478] leading-relaxed mb-6">
+                  <div className="p-5">
+                    <p className="text-xs sm:text-sm text-[#526478] leading-relaxed mb-5">
                       {service.description}
                     </p>
 
                     {/* Features checklist */}
-                    <div className="space-y-2.5 pt-4 border-t border-slate-100">
+                    <div className="space-y-2 pt-4 border-t border-slate-100">
                       <span className="text-[11px] font-bold text-[#0B2A4A] uppercase tracking-wider block">
                         Key Capabilities:
                       </span>
@@ -146,26 +163,18 @@ export const ServicesSection: React.FC = () => {
                 </div>
 
                 {/* Card Action Link */}
-                <div className="p-6 pt-0">
+                <div className="p-5 pt-0">
                   <a
-                    href={`#quote`}
-                    className="inline-flex items-center justify-between w-full py-2.5 px-4 rounded-xl bg-[#F7FAFC] hover:bg-[#EAF4FC] text-[#1261A0] font-bold text-xs transition-colors border border-slate-100 group-hover:border-[#1261A0]/20"
+                    href="#quote"
+                    className="inline-flex items-center justify-between w-full py-2.5 px-4 rounded-xl bg-[#F7FAFC] hover:bg-[#EAF4FC] text-[#1261A0] font-bold text-xs transition-colors duration-200 border border-slate-100 group-hover:border-[#1261A0]/20"
                   >
                     <span>Enquire About {service.title}</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                   </a>
                 </div>
               </div>
             );
           })}
-        </div>
-
-        {/* Honest Service Disclaimer */}
-        <div className="mt-10 p-4 rounded-xl bg-slate-100/80 border border-slate-200/60 text-xs text-slate-600 flex items-start gap-3">
-          <AlertCircle className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
-          <p>
-            <strong className="text-slate-800">Operational Notice:</strong> Transportation solutions, routes, and modal availability are subject to actual carrier network feasibility, cargo characteristics, and destination regulations.
-          </p>
         </div>
 
       </div>

@@ -19,18 +19,18 @@ export const TrackingSection: React.FC = () => {
   };
 
   return (
-    <section id="tracking" className="py-20 lg:py-28 bg-[#F1F6FB] border-t border-slate-200/80 relative">
+    <section id="tracking" className="py-16 lg:py-24 bg-[#F1F6FB] border-t border-slate-200/80 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-12">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-3">
             CONSIGNMENT TRACKING DESK
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight">
             Track Your Shipment
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#526478] leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg text-[#526478] leading-relaxed">
             Enter your booking reference or transporter consignment note to check shipment coordination status.
           </p>
         </div>
@@ -59,7 +59,7 @@ export const TrackingSection: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="absolute right-2 top-2 bottom-2 px-5 rounded-lg bg-[#1261A0] hover:bg-[#0E4E82] text-white text-xs sm:text-sm font-bold uppercase tracking-wide transition-colors flex items-center gap-1.5 shadow-sm"
+                  className="btn-interactive absolute right-2 top-2 bottom-2 px-5 rounded-lg bg-[#1261A0] hover:bg-[#0E4E82] text-white text-xs sm:text-sm font-bold uppercase tracking-wide transition-colors flex items-center gap-1.5 shadow-sm"
                 >
                   <Search className="w-4 h-4" />
                   <span className="hidden sm:inline">Track</span>

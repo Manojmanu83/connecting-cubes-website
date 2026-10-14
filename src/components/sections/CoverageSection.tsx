@@ -1,33 +1,44 @@
 'use client';
 
-import React, { useState } from 'react';
-import { MapPin, Navigation, Compass, Truck, Train, Plane, CheckCircle2, Info } from 'lucide-react';
+import React from 'react';
+import Image from 'next/image';
+import { Compass, Truck, Train, Plane, CheckCircle2, ShieldCheck, ArrowRight } from 'lucide-react';
 
-interface TradeHub {
+interface IllustrativeNode {
   id: string;
   name: string;
-  region: string;
-  role: string;
-  x: number; // percentage in SVG viewBox
-  y: number; // percentage in SVG viewBox
+  zone: string;
+  x: number; // Exact X coordinate in india_accurate_map.svg coordinate space
+  y: number; // Exact Y coordinate in india_accurate_map.svg coordinate space
 }
 
-const TRADE_HUBS: TradeHub[] = [
-  { id: 'del', name: 'Delhi NCR', region: 'North Zone', role: 'Major Industrial & Freight Hub', x: 38, y: 30 },
-  { id: 'mum', name: 'Mumbai MMR', region: 'West Zone', role: 'Commercial Gateway & Port Access', x: 28, y: 56 },
-  { id: 'ahd', name: 'Ahmedabad', region: 'West Zone', role: 'Manufacturing & Textiles Corridor', x: 26, y: 45 },
-  { id: 'blr', name: 'Bengaluru', region: 'South Zone', role: 'Tech & Heavy Engineering Center', x: 37, y: 77 },
-  { id: 'che', name: 'Chennai', region: 'South Zone', role: 'Automotive & Coastal Transit Hub', x: 44, y: 76 },
-  { id: 'hyd', name: 'Hyderabad', region: 'South-Central', role: 'Pharma & Multi-modal Interchange', x: 39, y: 62 },
-  { id: 'kol', name: 'Kolkata', region: 'East Zone', role: 'Eastern Trade & Riverine Gateway', x: 67, y: 47 },
-  { id: 'guw', name: 'Guwahati', region: 'North-East', role: 'Northeast Freight Distribution Hub', x: 80, y: 38 },
+// Configurable data structure with documented coordinates matching india_accurate_map.svg (-400 -460 1450 1760)
+const ILLUSTRATIVE_NODES: IllustrativeNode[] = [
+  { id: 'delhi', name: 'Delhi NCR', zone: 'North Intermodal', x: 74, y: 43 },
+  { id: 'mumbai', name: 'Mumbai', zone: 'West Gateway', x: -185, y: 545 },
+  { id: 'ahmedabad', name: 'Ahmedabad', zone: 'West Industrial', x: -190, y: 330 },
+  { id: 'bengaluru', name: 'Bengaluru', zone: 'South Tech/Mfg', x: 20, y: 890 },
+  { id: 'chennai', name: 'Chennai', zone: 'South Coastal', x: 175, y: 890 },
+  { id: 'hyderabad', name: 'Hyderabad', zone: 'Central Deccan', x: 110, y: 680 },
+  { id: 'kolkata', name: 'Kolkata', zone: 'East Riverine', x: 590, y: 390 },
+  { id: 'guwahati', name: 'Guwahati', zone: 'Northeast Gateway', x: 790, y: 190 },
+];
+
+// Documented multi-modal routes between illustrative connectivity hubs
+const ILLUSTRATIVE_ROUTES = [
+  { from: 'delhi', to: 'mumbai' },
+  { from: 'delhi', to: 'kolkata' },
+  { from: 'delhi', to: 'hyderabad' },
+  { from: 'mumbai', to: 'ahmedabad' },
+  { from: 'mumbai', to: 'bengaluru' },
+  { from: 'bengaluru', to: 'chennai' },
+  { from: 'hyderabad', to: 'chennai' },
+  { from: 'kolkata', to: 'guwahati' }, // Explicit connection to Northeast India
 ];
 
 export const CoverageSection: React.FC = () => {
-  const [activeHub, setActiveHub] = useState<TradeHub>(TRADE_HUBS[0]);
-
   return (
-    <section id="coverage" className="py-20 lg:py-28 bg-[#0B2A4A] text-white relative overflow-hidden">
+    <section id="coverage" className="py-16 lg:py-24 bg-[#0B2A4A] text-white relative overflow-hidden">
       {/* Background ambient lighting */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#1E88E5]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#1261A0]/10 rounded-full blur-3xl pointer-events-none" />
@@ -35,170 +46,209 @@ export const CoverageSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sky-300 text-xs font-bold uppercase tracking-wider mb-4 border border-white/10">
+        <div className="max-w-3xl mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sky-300 text-xs font-bold uppercase tracking-wider mb-3 border border-white/10">
             NETWORK FOOTPRINT
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
-            Connecting Businesses Across India
+            Pan-India Logistics Connectivity
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
-            With a broad transportation network spanning more than 20,000 PIN codes,
-            Connecting Cubes helps businesses coordinate cargo movement across locations throughout India.
+          <p className="mt-3 text-base sm:text-lg text-slate-300 leading-relaxed">
+            With coordination capability spanning more than 20,000 PIN codes, Connecting Cubes helps businesses move freight reliably across all states, union territories, and commercial transport corridors.
           </p>
         </div>
 
-        {/* Map & Corridor Interactive Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Map & Capabilities Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Stylized Network Map Graphic (Spans 7 cols on lg) */}
-          <div className="lg:col-span-7 bg-[#0E365E]/60 rounded-3xl p-6 sm:p-8 border border-white/10 backdrop-blur-sm relative">
-            <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/10 text-xs text-slate-300">
-              <span className="flex items-center gap-2 font-semibold">
-                <Compass className="w-4 h-4 text-sky-400" />
-                Stylized Network Topology
+          {/* LEFT: Accurate India Map Container (Spans 7 cols on lg) */}
+          <div className="lg:col-span-7 bg-[#09233E]/90 rounded-3xl p-5 sm:p-7 border border-white/15 backdrop-blur-md relative shadow-2xl">
+            <div className="flex items-center justify-between mb-3 pb-3 border-b border-white/10 text-xs text-slate-300">
+              <span className="flex items-center gap-2 font-semibold text-sky-200">
+                <Compass className="w-4 h-4 text-[#1E88E5]" />
+                Geographically Accurate Administrative Boundaries
               </span>
-              <span className="text-[11px] text-sky-300">
-                Click a hub to view regional coordination
+              <span className="text-[11px] text-slate-400 hidden sm:inline">
+                Includes Northeast & Island Territories
               </span>
             </div>
 
-            {/* Custom Scalable Vector Representation */}
-            <div className="relative w-full aspect-[4/3] max-h-[440px] flex items-center justify-center">
+            {/* Scalable Map Frame with Exact Coordinate Overlay */}
+            <div className="relative w-full aspect-[4/4.6] max-h-[580px] flex items-center justify-center overflow-hidden rounded-2xl bg-[#061729]/60 border border-white/5 p-2">
+              
+              {/* Authentic Bundled India SVG Base with real state boundaries */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/india_accurate_map.svg"
+                alt="Accurate Pan-India logistics map with genuine state and union territory borders"
+                className="w-full h-full object-contain pointer-events-none select-none filter contrast-125"
+                loading="lazy"
+              />
+
+              {/* Exact Coordinate System Overlay SVG (Matching viewBox: -400 -460 1450 1760) */}
               <svg
-                viewBox="0 0 100 100"
-                className="w-full h-full"
-                aria-label="Stylized network map of India trade hubs"
+                viewBox="-400 -460 1450 1760"
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                aria-hidden="true"
               >
-                {/* Decorative background outline contours representing India geography */}
-                <path
-                  d="M32 12 Q40 6 45 14 Q52 18 48 24 Q56 26 64 28 Q75 27 82 32 Q88 38 78 45 Q70 48 66 52 Q58 56 50 68 Q44 78 40 86 Q37 92 35 90 Q32 82 30 74 Q24 64 22 55 Q20 46 25 38 Q24 30 32 20 Z"
-                  fill="none"
-                  stroke="#1E88E5"
-                  strokeWidth="0.75"
-                  strokeOpacity="0.3"
-                  strokeDasharray="2 2"
-                />
+                <defs>
+                  <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#1E88E5" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#64B5F6" stopOpacity="0.8" />
+                  </linearGradient>
+                </defs>
 
-                {/* Coordinated Transport Routes (Vector connecting lines) */}
-                {/* North to West */}
-                <line x1="38" y1="30" x2="26" y2="45" stroke="#64B5F6" strokeWidth="0.8" strokeOpacity="0.4" strokeDasharray="1.5 1.5" />
-                {/* West to Central/South */}
-                <line x1="26" y1="45" x2="28" y2="56" stroke="#64B5F6" strokeWidth="0.8" strokeOpacity="0.4" strokeDasharray="1.5 1.5" />
-                <line x1="28" y1="56" x2="37" y2="77" stroke="#64B5F6" strokeWidth="0.8" strokeOpacity="0.4" strokeDasharray="1.5 1.5" />
-                {/* North to East */}
-                <line x1="38" y1="30" x2="67" y2="47" stroke="#64B5F6" strokeWidth="0.8" strokeOpacity="0.4" strokeDasharray="1.5 1.5" />
-                {/* East to North-East */}
-                <line x1="67" y1="47" x2="80" y2="38" stroke="#64B5F6" strokeWidth="0.8" strokeOpacity="0.4" strokeDasharray="1.5 1.5" />
-                {/* North to South-Central */}
-                <line x1="38" y1="30" x2="39" y2="62" stroke="#64B5F6" strokeWidth="0.8" strokeOpacity="0.4" strokeDasharray="1.5 1.5" />
-                <line x1="39" y1="62" x2="44" y2="76" stroke="#64B5F6" strokeWidth="0.8" strokeOpacity="0.4" strokeDasharray="1.5 1.5" />
-                <line x1="37" y1="77" x2="44" y2="76" stroke="#64B5F6" strokeWidth="0.8" strokeOpacity="0.4" strokeDasharray="1.5 1.5" />
+                {/* Illustrative Transport Routes Between Major Corridor Interchanges */}
+                {ILLUSTRATIVE_ROUTES.map((route, rIdx) => {
+                  const fromNode = ILLUSTRATIVE_NODES.find((n) => n.id === route.from);
+                  const toNode = ILLUSTRATIVE_NODES.find((n) => n.id === route.to);
+                  if (!fromNode || !toNode) return null;
 
-                {/* Hub Interactive Nodes */}
-                {TRADE_HUBS.map((hub) => {
-                  const isSelected = activeHub.id === hub.id;
                   return (
-                    <g
-                      key={hub.id}
-                      className="cursor-pointer transition-all"
-                      onClick={() => setActiveHub(hub)}
-                    >
-                      {/* Outer pulse when selected */}
-                      {isSelected && (
-                        <circle
-                          cx={hub.x}
-                          cy={hub.y}
-                          r="6"
-                          fill="#1E88E5"
-                          opacity="0.3"
-                          className="animate-ping"
-                        />
-                      )}
-                      {/* Outer border ring */}
-                      <circle
-                        cx={hub.x}
-                        cy={hub.y}
-                        r={isSelected ? 4 : 2.8}
-                        fill={isSelected ? '#FFFFFF' : '#1261A0'}
-                        stroke={isSelected ? '#1E88E5' : '#64B5F6'}
-                        strokeWidth="1.2"
-                      />
-                      {/* Node label */}
-                      <text
-                        x={hub.x}
-                        y={hub.y - 4}
-                        textAnchor="middle"
-                        fill={isSelected ? '#FFFFFF' : '#93C5FD'}
-                        fontSize="3"
-                        fontWeight={isSelected ? 'bold' : 'normal'}
-                      >
-                        {hub.name}
-                      </text>
-                    </g>
+                    <line
+                      key={rIdx}
+                      x1={fromNode.x}
+                      y1={fromNode.y}
+                      x2={toNode.x}
+                      y2={toNode.y}
+                      stroke="url(#routeGradient)"
+                      strokeWidth="3.5"
+                      strokeDasharray="8 8"
+                      strokeOpacity="0.75"
+                      className="motion-safe:animate-pulse"
+                    />
                   );
                 })}
+
+                {/* Illustrative Connectivity Nodes in Actual Cartographic Coordinates */}
+                {ILLUSTRATIVE_NODES.map((node) => (
+                  <g key={node.id} className="transition-all">
+                    {/* Glowing outer pulse marker */}
+                    <circle
+                      cx={node.x}
+                      cy={node.y}
+                      r="16"
+                      fill="#1E88E5"
+                      opacity="0.25"
+                      className="motion-safe:animate-ping"
+                    />
+                    {/* Core node circle */}
+                    <circle
+                      cx={node.x}
+                      cy={node.y}
+                      r="8"
+                      fill="#1261A0"
+                      stroke="#FFFFFF"
+                      strokeWidth="2.5"
+                    />
+                    <circle
+                      cx={node.x}
+                      cy={node.y}
+                      r="3.5"
+                      fill="#64B5F6"
+                    />
+                    {/* Node Text Label */}
+                    <text
+                      x={node.x}
+                      y={node.y - 14}
+                      textAnchor="middle"
+                      fill="#FFFFFF"
+                      fontSize="22"
+                      fontWeight="bold"
+                      className="drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]"
+                    >
+                      {node.name}
+                    </text>
+                  </g>
+                ))}
               </svg>
             </div>
 
-            {/* Transport Indicators strip */}
-            <div className="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-300">
-              <span className="flex items-center gap-1.5">
-                <Truck className="w-3.5 h-3.5 text-sky-400" />
-                Highway Corridors
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Train className="w-3.5 h-3.5 text-sky-400" />
-                Railway Transits
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Plane className="w-3.5 h-3.5 text-sky-400" />
-                Air Cargo Lanes
+            {/* Illustrative Legend & Mandatory Source Attribution */}
+            <div className="mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] text-slate-300">
+              <div className="flex items-center gap-3">
+                <span className="flex items-center gap-1.5 text-sky-200">
+                  <span className="w-2 h-2 rounded-full bg-[#1E88E5] inline-block" />
+                  Illustrative Connectivity Points
+                </span>
+                <span className="text-slate-400">|</span>
+                <span className="text-slate-300">
+                  Multi-modal Arterial Corridors
+                </span>
+              </div>
+              <span className="text-[10px] text-slate-400">
+                Map base: Planemad / CC BY-SA 3.0
               </span>
             </div>
           </div>
 
-          {/* Right Corridor Details & Stated Coverage Card (Spans 5 cols on lg) */}
+          {/* RIGHT: Confirmed Coverage Details & Verification (Spans 5 cols on lg) */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Active Hub Detail Card */}
-            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/15 shadow-xl">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-[11px] font-bold uppercase tracking-wider text-sky-300 px-2.5 py-1 rounded bg-white/10">
-                  {activeHub.region}
+            
+            {/* Stated PIN Code Reach Card */}
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-7 border border-white/15 shadow-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <ShieldCheck className="w-5 h-5 text-sky-400" />
+                <span className="text-xs font-bold uppercase tracking-wider text-sky-300">
+                  Confirmed Scope
                 </span>
-                <span className="text-xs text-slate-300">Selected Gateway</span>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {activeHub.name}
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-4">
-                {activeHub.role}. Seamless coordination connecting intra-state distribution with inter-state express line-hauls.
+              <div className="text-3xl sm:text-4xl font-extrabold text-white font-heading mb-2">
+                20,000+ PIN Codes
+              </div>
+              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                Stated transportation coordination reach across Indian states and union territories. Feasibility is verified per shipment against current carrier availability and local vehicle access constraints.
               </p>
+            </div>
 
-              <div className="space-y-2 pt-3 border-t border-white/10 text-xs text-slate-200">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Road FTL/PTL provider dispatch capability</span>
+            {/* Multimodal Corridor Standards */}
+            <div className="bg-[#09233E]/70 rounded-2xl p-6 border border-white/10 space-y-4">
+              <h3 className="text-sm font-bold text-white uppercase tracking-wider">
+                Integrated Transport Modes
+              </h3>
+
+              <div className="space-y-3 text-xs text-slate-200">
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 text-sky-300 mt-0.5">
+                    <Truck className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <strong className="text-white block">Highway & Surface Transport:</strong>
+                    <span>Full Truckload (FTL) and Part Truckload (PTL) coordination along national highways and industrial feeder links.</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Connecting feeder routes to Tier-2 & Tier-3 industrial zones</span>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 text-sky-300 mt-0.5">
+                    <Train className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <strong className="text-white block">Railway Freight Corridors:</strong>
+                    <span>Inter-regional long-haul movement coordinated through commercial container terminals and rake sidings.</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center flex-shrink-0 text-sky-300 mt-0.5">
+                    <Plane className="w-3.5 h-3.5" />
+                  </div>
+                  <div>
+                    <strong className="text-white block">Air Cargo Expedited Lanes:</strong>
+                    <span>Time-sensitive consignments coordinated through major domestic airport cargo handling hubs.</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Stated PIN Code Coverage Box */}
-            <div className="bg-gradient-to-r from-[#1261A0]/30 to-[#1E88E5]/20 rounded-2xl p-6 border border-sky-400/20">
-              <div className="text-3xl font-extrabold text-white font-heading mb-1">
-                20,000+ PIN Codes
-              </div>
-              <p className="text-xs text-sky-200 mb-3 font-semibold">
-                Stated Pan-India Coordination Reach
-              </p>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                Subject to confirmation of current carrier route coverage and cargo profile.
-                Our dispatch coordination team verifies pickup and delivery feasibility for your specific PIN code before scheduling.
-              </p>
+            {/* Action Button */}
+            <div className="pt-2">
+              <a
+                href="#quote"
+                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#1261A0] hover:bg-[#1E88E5] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.99]"
+              >
+                <span>Verify Route & PIN Feasibility</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
 
           </div>

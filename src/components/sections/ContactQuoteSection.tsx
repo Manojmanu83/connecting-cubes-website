@@ -111,18 +111,18 @@ export const ContactQuoteSection: React.FC = () => {
   };
 
   return (
-    <section id="quote" className="py-20 lg:py-28 bg-white relative">
+    <section id="quote" className="py-16 lg:py-24 bg-white relative">
       <div id="contact" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-4">
+        <div className="max-w-3xl mb-12 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-3">
             FREIGHT QUOTATION & ENQUIRY
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight leading-tight">
             Have a Shipment to Move?
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-[#526478] leading-relaxed">
+          <p className="mt-3 text-base sm:text-lg text-[#526478] leading-relaxed">
             Tell us about your cargo requirements, and our team can help you explore suitable transportation options across India.
           </p>
         </div>
@@ -397,7 +397,7 @@ export const ContactQuoteSection: React.FC = () => {
                 {/* Submit Button */}
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-xl bg-[#1261A0] hover:bg-[#0E4E82] text-white font-bold text-sm uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                  className="btn-interactive w-full py-4 px-6 rounded-xl bg-[#1261A0] hover:bg-[#0E4E82] text-white font-bold text-sm uppercase tracking-wider shadow-md hover:shadow-lg flex items-center justify-center gap-2 active:scale-[0.99]"
                 >
                   <Send className="w-4 h-4" />
                   <span>Request a Quote</span>

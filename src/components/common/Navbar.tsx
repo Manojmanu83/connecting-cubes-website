@@ -103,7 +103,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden lg:flex items-center gap-3">
             <a
               href="#quote"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#1261A0] hover:bg-[#0E4E82] text-white text-sm font-bold shadow-sm hover:shadow-md transition-all active:scale-[0.98]"
+              className="btn-interactive inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#1261A0] hover:bg-[#0E4E82] text-white text-sm font-bold shadow-sm hover:shadow-md active:scale-[0.98]"
             >
               <span>Get a Quote</span>
               <ArrowRight className="w-4 h-4" />

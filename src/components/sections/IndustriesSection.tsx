@@ -67,10 +67,10 @@ export const IndustriesSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition-all group flex flex-col justify-between"
+                className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs hover:shadow-md transition-all duration-200 group flex flex-col justify-between hover:-translate-y-0.5"
               >
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                  <div className="w-12 h-12 rounded-xl bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-200">
                     <Icon className="w-6 h-6" />
                   </div>
                   <h3 className="text-base font-bold text-[#0B2A4A] mb-2 tracking-tight">
@@ -81,18 +81,30 @@ export const IndustriesSection: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-100">
-                  <a
-                    href="#quote"
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1261A0] hover:text-[#0B2A4A] transition-colors"
-                  >
-                    <span>Request industry quote</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-[#1261A0] font-semibold">
+                  <span>Customized modal solutions</span>
+                  <span className="text-slate-300">0{idx + 1}</span>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        {/* Unified Section Enquiry Call to Action */}
+        <div className="mt-12 text-center bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs max-w-2xl mx-auto">
+          <h3 className="text-base font-bold text-[#0B2A4A] mb-1">
+            Don&apos;t see your specific sector listed?
+          </h3>
+          <p className="text-xs sm:text-sm text-[#526478] mb-5 leading-relaxed">
+            Our multi-modal network adapts to diverse bulk, palletized, containerized, and temperature-conscious freight.
+          </p>
+          <a
+            href="#quote"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#1261A0] hover:bg-[#0E4E82] text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.99]"
+          >
+            <span>Request an Industry Consultation</span>
+            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </a>
         </div>
 
       </div>

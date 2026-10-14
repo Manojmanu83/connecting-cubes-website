@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Award, MapPin, Layers, Calendar, CheckCircle2, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Award, MapPin, Layers, Calendar } from 'lucide-react';
 
 interface MetricItem {
   number: string;
@@ -78,36 +78,6 @@ export const TrustSection: React.FC = () => {
             );
           })}
         </div>
-
-        {/* Neutral Network & Credibility Strip (No fake client logos, fully honest network standards) */}
-        <div className="mt-8 pt-8 border-t border-slate-100">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-[#F1F6FB] rounded-xl px-6 py-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-white text-[#1261A0] flex items-center justify-center shadow-sm">
-                <ShieldCheck className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="text-xs font-bold text-[#0B2A4A]">
-                  Confidential & Enterprise-Compliant Freight Coordination
-                </p>
-                <p className="text-[11px] text-[#526478]">
-                  All cargo manifests and commercial routing details are strictly coordinated under non-disclosure protocols.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2">
-              <a
-                href="#about"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1261A0] hover:text-[#0B2A4A] transition-colors"
-              >
-                <span>Learn more about our methodology</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
   );

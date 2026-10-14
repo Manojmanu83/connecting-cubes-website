@@ -123,7 +123,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar: Copyright & Meaningful Legal Placeholders */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            © 2019–2026 Connecting Cubes. All rights reserved. Coordinated logistics solutions across India.
+            © 2019–{new Date().getFullYear()} Connecting Cubes. All rights reserved. Coordinated logistics solutions across India.
           </div>
 
           <div className="flex items-center gap-6">
