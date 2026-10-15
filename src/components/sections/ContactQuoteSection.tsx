@@ -116,9 +116,6 @@ export const ContactQuoteSection: React.FC = () => {
         
         {/* Header */}
         <div className="max-w-3xl mb-12 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-3">
-            FREIGHT QUOTATION & ENQUIRY
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight leading-tight">
             Have a Shipment to Move?
           </h2>
@@ -439,27 +436,66 @@ export const ContactQuoteSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Business Contact Details Card (Strictly adhering to honest policy: no invented numbers or addresses) */}
-            <div className="bg-[#F7FAFC] rounded-2xl p-6 border border-slate-200">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-2">
-                Business Contact Coordinates
+            {/* Verified Business Contact Details Card */}
+            <div className="bg-[#F7FAFC] rounded-2xl p-6 border border-slate-200 shadow-xs">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-[#1261A0] block mb-2">
+                Business Contact Details
               </span>
-              <h4 className="text-sm font-bold text-[#0B2A4A] mb-3">
-                Connecting Cubes Logistics Coordination
+              <h4 className="text-sm font-bold text-[#0B2A4A] mb-4">
+                Connecting Cubes Logistics
               </h4>
-              <div className="space-y-3 text-xs text-slate-600">
-                <div className="flex items-start gap-2.5">
-                  <MapPin className="w-4 h-4 text-[#1261A0] flex-shrink-0 mt-0.5" />
-                  <span>Pan-India Coordination Network (Operational Headquarters to be confirmed)</span>
+              <div className="space-y-3.5 text-xs text-slate-700">
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Phone className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Phone / Mobile</span>
+                    <a
+                      href="tel:8660223424"
+                      className="font-semibold text-[#0B2A4A] hover:text-[#1261A0] transition-colors"
+                    >
+                      +91 86602 23424
+                    </a>
+                  </div>
                 </div>
-                <div className="flex items-start gap-2.5">
-                  <Clock className="w-4 h-4 text-[#1261A0] flex-shrink-0 mt-0.5" />
-                  <span>Operations: Monday – Saturday (Standard Freight Transit Timings)</span>
-                </div>
-              </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-200/80 text-[11px] text-slate-500 italic">
-                Direct phone and registered address details will be populated once official business verification is completed.
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Email Address</span>
+                    <a
+                      href="mailto:sales@connectingcubes.in"
+                      className="font-semibold text-[#0B2A4A] hover:text-[#1261A0] transition-colors"
+                    >
+                      sales@connectingcubes.in
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Office Address</span>
+                    <span className="text-slate-700 leading-relaxed block">
+                      433/13 BHEL layout, near water tank, Pattanagere, Rajarajeshwari Nagar, Bengaluru, Karnataka 560098
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <Clock className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-slate-400 block">Operations Desk</span>
+                    <span className="text-slate-700">Monday – Saturday (Standard Freight Transit Timings)</span>
+                  </div>
+                </div>
               </div>
             </div>
 

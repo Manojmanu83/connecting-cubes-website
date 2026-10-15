@@ -15,12 +15,26 @@ import {
 import { TrackingModal } from '../common/TrackingModal';
 
 export const HeroSection: React.FC = () => {
+  const [selectedTransporter, setSelectedTransporter] = useState('');
   const [consignmentInput, setConsignmentInput] = useState('');
   const [trackingModalOpen, setTrackingModalOpen] = useState(false);
   const [inputError, setInputError] = useState('');
 
+  const TRANSPORTERS = [
+    'DELHIVERY',
+    'XPRESSBEES',
+    'RIVIGO',
+    'DP WORLD',
+    'MAHINDRA',
+    'GATI',
+  ];
+
   const handleTrackSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedTransporter) {
+      setInputError('Please select a transporter network first.');
+      return;
+    }
     if (!consignmentInput.trim()) {
       setInputError('Please enter a valid consignment reference or docket number.');
       return;
@@ -32,7 +46,7 @@ export const HeroSection: React.FC = () => {
   return (
     <section
       id="home"
-      className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 bg-gradient-to-b from-[#061729] via-[#0B2A4A] to-[#0E365E] text-white overflow-hidden"
+      className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 bg-gradient-to-b from-[#061729] via-[#0B2A4A] to-[#0E365E] text-white overflow-hidden"
     >
       {/* 1. Ambient Lighting & Restrained Gradient Atmosphere */}
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#1261A0]/25 rounded-full blur-[120px] pointer-events-none" />
@@ -133,7 +147,7 @@ export const HeroSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
+
           {/* LEFT COLUMN: Hero Headline & Editorial Composition */}
           <div className="lg:col-span-7 space-y-7">
             {/* Eyebrow badge */}
@@ -142,11 +156,13 @@ export const HeroSection: React.FC = () => {
               PAN-INDIA FREIGHT COORDINATION
             </div>
 
-            {/* Exact Two-Line Headline */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[84px] font-black text-white tracking-tight leading-[0.93] select-none">
-              <span className="block drop-shadow-md">Reliable.</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-[#64B5F6] via-[#90CAF9] to-white -mt-1 sm:-mt-2 drop-shadow-sm">
-                Connected.
+            {/* Emphasized Headline */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[68px] xl:text-[76px] font-black text-white tracking-tight leading-[1.05] select-none">
+              <span className="block text-white font-black drop-shadow-md">
+                Reliable Freight.
+              </span>
+              <span className="block text-sky-200 text-3xl sm:text-4xl md:text-5xl lg:text-[52px] xl:text-[60px] font-extrabold mt-1 sm:mt-2">
+                Nationwide Reach.
               </span>
             </h1>
 
@@ -155,21 +171,21 @@ export const HeroSection: React.FC = () => {
               End-to-end logistics coordination across India, connecting businesses with transportation solutions across road, rail and air.
             </p>
 
-            {/* Call to Actions */}
+            {/* Call to Actions: Request a Quote & Verify Route & Pin Feasibility */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <a
-                href="#services"
-                className="btn-interactive inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#1261A0] hover:bg-[#1E88E5] text-white text-base font-bold shadow-lg hover:shadow-xl"
+                href="#quote"
+                className="btn-interactive inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#1261A0] hover:bg-[#1E88E5] text-white text-base font-bold shadow-lg hover:shadow-xl transition-all"
               >
-                <span>Explore Our Services</span>
+                <span>Request a Quote</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
               <a
-                href="#contact"
-                className="btn-interactive inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-base font-bold border border-white/20 hover:border-white/40 backdrop-blur-md"
+                href="#coverage"
+                className="btn-interactive inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-base font-bold border border-white/20 hover:border-white/40 backdrop-blur-md transition-all"
               >
-                <span>Talk to Our Team</span>
+                <span>Verify Route & Pin Feasibility</span>
               </a>
             </div>
 
@@ -195,9 +211,9 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* RIGHT COLUMN: Translucent Shipment Tracking & Quotation Panel */}
-          <div className="lg:col-span-5 relative">
+          <div id="tracking" className="lg:col-span-5 relative scroll-mt-28">
             <div className="relative rounded-2xl bg-white/10 backdrop-blur-xl p-6 sm:p-7 text-white shadow-2xl border border-white/20 overflow-hidden">
-              
+
               {/* Header inside Panel */}
               <div className="flex items-center justify-between mb-5 pb-3 border-b border-white/15">
                 <div className="flex items-center gap-2">
@@ -233,8 +249,8 @@ export const HeroSection: React.FC = () => {
 
               {/* Clean White Floating Action Card */}
               <div className="bg-white rounded-xl p-5 text-[#17202A] shadow-xl border border-slate-100">
-                
-                {/* 1. TRACK YOUR SHIPMENT */}
+
+                {/* 1. TRACK YOUR SHIPMENT WITH TRANSPORTER SELECTION */}
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
                     <h2 className="text-xs font-extrabold uppercase tracking-wider text-[#0B2A4A] flex items-center gap-1.5">
@@ -242,29 +258,68 @@ export const HeroSection: React.FC = () => {
                       TRACK YOUR SHIPMENT
                     </h2>
                     <span className="text-[10px] text-slate-400 font-medium">
-                      Docket / LR
+                      Carrier LR / Docket
                     </span>
                   </div>
 
-                  <form onSubmit={handleTrackSubmit} className="space-y-2">
+                  <form onSubmit={handleTrackSubmit} className="space-y-2.5">
+                    {/* Transporter Dropdown */}
+                    <div>
+                      <label htmlFor="transporter-select" className="sr-only">
+                        Select Transporter
+                      </label>
+                      <select
+                        id="transporter-select"
+                        value={selectedTransporter}
+                        onChange={(e) => {
+                          setSelectedTransporter(e.target.value);
+                          if (inputError) setInputError('');
+                        }}
+                        className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white text-slate-800 focus:border-[#1261A0] focus:ring-1 focus:ring-[#1261A0] outline-none transition-all cursor-pointer"
+                      >
+                        <option value="">-- Select Transporter Network --</option>
+                        {TRANSPORTERS.map((t) => (
+                          <option key={t} value={t}>
+                            {t}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Consignment Number Input - Disabled until Transporter Selected */}
                     <div className="relative">
                       <input
                         type="text"
+                        disabled={!selectedTransporter}
                         value={consignmentInput}
                         onChange={(e) => {
                           setConsignmentInput(e.target.value);
                           if (inputError) setInputError('');
                         }}
-                        placeholder="Enter consignment or LR number..."
-                        className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border border-slate-300 focus:border-[#1261A0] focus:ring-1 focus:ring-[#1261A0] text-slate-900 placeholder-slate-400 transition-all outline-none"
+                        placeholder={
+                          selectedTransporter
+                            ? 'Enter consignment or LR number...'
+                            : 'Select a transporter above first...'
+                        }
+                        className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border transition-all outline-none ${!selectedTransporter
+                          ? 'bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed placeholder-slate-400'
+                          : 'bg-white border-slate-300 text-slate-900 focus:border-[#1261A0] focus:ring-1 focus:ring-[#1261A0] placeholder-slate-400'
+                          }`}
                       />
                     </div>
+
                     {inputError && (
                       <p className="text-[11px] text-red-600 font-medium">{inputError}</p>
                     )}
+
+                    {/* Track Action */}
                     <button
                       type="submit"
-                      className="btn-interactive w-full py-2.5 px-4 rounded-lg bg-[#0B2A4A] hover:bg-[#1261A0] text-white text-xs font-bold uppercase tracking-wide transition-colors flex items-center justify-center gap-1.5 shadow-sm"
+                      disabled={!selectedTransporter || !consignmentInput.trim()}
+                      className={`btn-interactive w-full py-2.5 px-4 rounded-lg text-xs font-bold uppercase tracking-wide transition-all flex items-center justify-center gap-1.5 shadow-sm ${!selectedTransporter || !consignmentInput.trim()
+                        ? 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                        : 'bg-[#0B2A4A] hover:bg-[#1261A0] text-white cursor-pointer'
+                        }`}
                     >
                       <Search className="w-3.5 h-3.5" />
                       <span>Track Consignment</span>
@@ -313,6 +368,7 @@ export const HeroSection: React.FC = () => {
         isOpen={trackingModalOpen}
         onClose={() => setTrackingModalOpen(false)}
         consignmentNumber={consignmentInput}
+        transporter={selectedTransporter}
       />
     </section>
   );

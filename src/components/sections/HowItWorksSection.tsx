@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { FileText, SearchCheck, Layers, Truck, MapPinCheck, ArrowRight } from 'lucide-react';
+import { FileText, SearchCheck, Layers, Truck, MapPinCheck } from 'lucide-react';
 
 interface Step {
   stepNumber: string;
@@ -76,9 +76,6 @@ export const HowItWorksSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-3">
-            LOGISTICS LIFECYCLE
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight">
             How We Coordinate Your Cargo
           </h2>
@@ -238,20 +235,6 @@ export const HowItWorksSection: React.FC = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Informative Note & CTA */}
-        <div className="mt-12 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
-          <span className="text-xs text-[#526478] italic">
-            * Operational methodology sequence • Not a live consignment tracker
-          </span>
-          <a
-            href="#quote"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0B2A4A] hover:bg-[#1261A0] text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-xs hover:shadow-sm"
-          >
-            <span>Initiate Requirement (Step 01)</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </a>
         </div>
 
       </div>

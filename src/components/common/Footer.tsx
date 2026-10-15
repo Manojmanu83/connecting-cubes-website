@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#services" className="hover:text-sky-300 transition-colors">
-                  End-to-End Logistics Management
+                  Warehousing & Storage
                 </a>
               </li>
               <li>
@@ -83,8 +83,13 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#industries" className="hover:text-sky-300 transition-colors">
-                  Industries Served
+                <a href="#services" className="hover:text-sky-300 transition-colors">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#coverage" className="hover:text-sky-300 transition-colors">
+                  Network Footprint
                 </a>
               </li>
               <li>
@@ -94,7 +99,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#quote" className="hover:text-sky-300 transition-colors">
-                  Get a Quote
+                  Request a Quote
                 </a>
               </li>
             </ul>
@@ -108,22 +113,14 @@ export const Footer: React.FC = () => {
             <p className="text-xs text-slate-300 leading-relaxed">
               Operating across an extensive network of 20,000+ PIN codes. All transport operations are subject to actual carrier availability and terms.
             </p>
-            <div className="pt-2">
-              <a
-                href="#quote"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#1261A0] hover:bg-[#1E88E5] text-white text-xs font-bold transition-colors"
-              >
-                <span>Request Quotation</span>
-              </a>
-            </div>
           </div>
 
         </div>
 
-        {/* Bottom Bar: Copyright & Meaningful Legal Placeholders */}
+        {/* Bottom Bar: Copyright (without year) & Legal Placeholders */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <div>
-            © 2019–{new Date().getFullYear()} Connecting Cubes. All rights reserved. Coordinated logistics solutions across India.
+            © Connecting Cubes. All rights reserved. Coordinated logistics solutions across India.
           </div>
 
           <div className="flex items-center gap-6">

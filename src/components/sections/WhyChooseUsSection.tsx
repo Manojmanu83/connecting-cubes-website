@@ -9,10 +9,75 @@ import {
   ShieldCheck,
   TrendingUp,
   CheckCircle2,
-  Sparkles,
 } from 'lucide-react';
 
-import Image from 'next/image';
+interface Pillar {
+  number: string;
+  title: string;
+  tagline: string;
+  description: string;
+  icon: React.ElementType;
+  bullet: string;
+  isFeatured?: boolean;
+}
+
+const PILLARS: Pillar[] = [
+  {
+    number: '01',
+    title: 'Pan-India Reach',
+    tagline: '20,000+ PIN Codes',
+    description:
+      'Transportation coordination across a broad network of locations in India, connecting major industrial corridors with regional destinations.',
+    icon: Globe2,
+    bullet: 'Highways, railway sidings, and air cargo terminals',
+    isFeatured: true,
+  },
+  {
+    number: '02',
+    title: 'Time-Conscious Delivery',
+    tagline: 'Schedule-Focused Planning',
+    description:
+      'We coordinate transportation options with delivery requirements in mind, prioritizing reliable schedules and prompt dispatch.',
+    icon: Clock,
+    bullet: 'Targeted transit schedules and proactive dispatch alignment',
+  },
+  {
+    number: '03',
+    title: 'End-to-End Coordination',
+    tagline: 'Single Point Accountability',
+    description:
+      'A dedicated point of contact to manage transportation requirements, eliminating multiple vendor confusion and miscommunication.',
+    icon: UserCheck,
+    bullet: 'Seamless coordination from loading through to destination delivery',
+  },
+  {
+    number: '04',
+    title: 'Multiple Transport Providers',
+    tagline: 'Vetted Carrier Network',
+    description:
+      'Suitable transportation options through a coordinated provider network, ensuring capacity resilience and optimal vehicle matching.',
+    icon: Share2,
+    bullet: 'Flexible multi-carrier allocation based on cargo requirements',
+  },
+  {
+    number: '05',
+    title: 'Cargo Insurance Assistance',
+    tagline: 'Policy Term Advisory',
+    description:
+      'Support in exploring cargo insurance options, subject to availability and applicable policy terms, to protect goods during transit.',
+    icon: ShieldCheck,
+    bullet: 'Assistance with declarations and insurer documentation',
+  },
+  {
+    number: '06',
+    title: 'Cost-Conscious Solutions',
+    tagline: 'Commercially Optimized',
+    description:
+      'We identify suitable transportation options based on cargo requirements and available services, optimizing logistical expense.',
+    icon: TrendingUp,
+    bullet: 'Transparent coordination options matched to consignment weight',
+  },
+];
 
 export const WhyChooseUsSection: React.FC = () => {
   return (
@@ -21,9 +86,6 @@ export const WhyChooseUsSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-3">
-            THE CONNECTING CUBES ADVANTAGE
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight leading-tight">
             Why Businesses Choose Connecting Cubes
           </h2>
@@ -32,180 +94,78 @@ export const WhyChooseUsSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Asymmetric Editorial Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
-          {/* Spotlight Feature Card with Authentic Logistics Photo (Spans 5 cols on lg) */}
-          <div className="lg:col-span-5 bg-gradient-to-br from-[#0B2A4A] via-[#0E365E] to-[#1261A0] rounded-3xl p-8 sm:p-10 text-white shadow-xl flex flex-col justify-between relative overflow-hidden group">
-            {/* Background authentic delivery image overlay */}
-            <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-25 transition-opacity duration-500">
-              <Image
-                src="/images/delivery.jpg"
-                alt="Connecting Cubes Pan-India Delivery"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 40vw"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B2A4A] via-[#0B2A4A]/80 to-transparent z-0" />
-            
-            <div className="relative z-10 space-y-6">
-              <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md text-sky-300 flex items-center justify-center border border-white/10">
-                <Globe2 className="w-7 h-7" />
-              </div>
+        {/* Balanced 6-Pillar Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+          {PILLARS.map((pillar) => {
+            const Icon = pillar.icon;
+            if (pillar.isFeatured) {
+              return (
+                <div
+                  key={pillar.number}
+                  className="bg-gradient-to-br from-[#0B2A4A] via-[#0E365E] to-[#1261A0] rounded-2xl p-7 text-white shadow-lg flex flex-col justify-between relative overflow-hidden group hover:shadow-xl transition-all"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md text-sky-300 flex items-center justify-center border border-white/15">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className="text-xs font-mono font-bold text-sky-300 bg-white/10 px-2.5 py-1 rounded-full border border-white/15">
+                        {pillar.number}
+                      </span>
+                    </div>
 
-              <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-sky-200 block mb-2">
-                  CORE PILLAR 01
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                  Pan-India Reach
-                </h3>
-                <p className="mt-3 text-sm text-slate-200 leading-relaxed">
-                  Transportation coordination across a broad network of locations in India,
-                  connecting major commercial corridors with regional destinations.
-                </p>
-              </div>
-
-              <div className="space-y-3 pt-4 border-t border-white/10">
-                <div className="flex items-center gap-3 text-xs text-slate-200">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
+                    <h3 className="text-xl font-bold text-white tracking-tight mb-2">
+                      {pillar.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-5">
+                      {pillar.description}
+                    </p>
                   </div>
-                  <span>20,000+ PIN codes reach capability</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-slate-200">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  </div>
-                  <span>Highways, railway sidings, and air cargo terminals</span>
-                </div>
-                <div className="flex items-center gap-3 text-xs text-slate-200">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center flex-shrink-0">
-                    <CheckCircle2 className="w-3.5 h-3.5" />
-                  </div>
-                  <span>Coordinated transit planning from dispatch to delivery</span>
-                </div>
-              </div>
-            </div>
 
-            <div className="mt-8 pt-6 border-t border-white/10 relative z-10 flex items-center justify-between">
-              <span className="text-xs text-slate-300">Operational Experience</span>
-              <span className="text-sm font-bold text-white">20+ Combined Years</span>
-            </div>
-          </div>
-
-          {/* 5 Distinct Cards in a 2-column subgrid (Spans 7 cols on lg) */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            
-            {/* Benefit 1 */}
-            <div className="bg-[#F7FAFC] rounded-2xl p-6 sm:p-7 border border-slate-200/80 hover:border-[#1261A0]/30 transition-all group flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Clock className="w-5 h-5" />
+                  <div className="pt-4 border-t border-white/15">
+                    <div className="flex items-center gap-2 text-xs text-sky-200">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                      <span>{pillar.bullet}</span>
+                    </div>
                   </div>
-                  <span className="text-xs font-mono font-bold text-slate-400">02</span>
                 </div>
-                <h4 className="text-base font-bold text-[#0B2A4A] tracking-tight mb-2">
-                  Time-Conscious Delivery Coordination
-                </h4>
-                <p className="text-xs sm:text-sm text-[#526478] leading-relaxed">
-                  We coordinate transportation options with delivery requirements in mind, prioritizing reliable schedules and prompt dispatch.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-[#1261A0]">
-                Schedule-Focused Planning
-              </div>
-            </div>
+              );
+            }
 
-            {/* Benefit 2 */}
-            <div className="bg-[#F7FAFC] rounded-2xl p-6 sm:p-7 border border-slate-200/80 hover:border-[#1261A0]/30 transition-all group flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <UserCheck className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono font-bold text-slate-400">03</span>
-                </div>
-                <h4 className="text-base font-bold text-[#0B2A4A] tracking-tight mb-2">
-                  End-to-End Coordination
-                </h4>
-                <p className="text-xs sm:text-sm text-[#526478] leading-relaxed">
-                  A single point of contact to help manage transportation requirements, eliminating multiple vendor confusion and miscommunication.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-[#1261A0]">
-                Single Point Accountability
-              </div>
-            </div>
-
-            {/* Benefit 3 */}
-            <div className="bg-[#F7FAFC] rounded-2xl p-6 sm:p-7 border border-slate-200/80 hover:border-[#1261A0]/30 transition-all group flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Share2 className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono font-bold text-slate-400">04</span>
-                </div>
-                <h4 className="text-base font-bold text-[#0B2A4A] tracking-tight mb-2">
-                  Multiple Transportation Providers
-                </h4>
-                <p className="text-xs sm:text-sm text-[#526478] leading-relaxed">
-                  Suitable transportation options through a coordinated provider network, ensuring capacity resilience and optimal vehicle matching.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-[#1261A0]">
-                Vetted Carrier Network
-              </div>
-            </div>
-
-            {/* Benefit 4 */}
-            <div className="bg-[#F7FAFC] rounded-2xl p-6 sm:p-7 border border-slate-200/80 hover:border-[#1261A0]/30 transition-all group flex flex-col justify-between">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <div className="w-11 h-11 rounded-xl bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <ShieldCheck className="w-5 h-5" />
-                  </div>
-                  <span className="text-xs font-mono font-bold text-slate-400">05</span>
-                </div>
-                <h4 className="text-base font-bold text-[#0B2A4A] tracking-tight mb-2">
-                  Cargo Insurance Assistance
-                </h4>
-                <p className="text-xs sm:text-sm text-[#526478] leading-relaxed">
-                  Support in exploring cargo insurance options, subject to availability and applicable policy terms, to protect goods during transit.
-                </p>
-              </div>
-              <div className="mt-4 pt-3 border-t border-slate-100 text-[11px] font-semibold text-[#1261A0]">
-                Policy Term Assistance
-              </div>
-            </div>
-
-            {/* Benefit 5 - Cost Conscious (Full width across bottom of right subgrid) */}
-            <div className="sm:col-span-2 bg-[#EAF4FC]/60 rounded-2xl p-6 sm:p-7 border border-[#1E88E5]/20 hover:border-[#1261A0]/40 transition-all flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <div className="flex items-start gap-4">
-                <div className="w-11 h-11 rounded-xl bg-[#1261A0] text-white flex items-center justify-center flex-shrink-0">
-                  <TrendingUp className="w-5 h-5" />
-                </div>
+            return (
+              <div
+                key={pillar.number}
+                className="bg-[#F7FAFC] rounded-2xl p-7 border border-slate-200/80 hover:border-[#1261A0]/30 shadow-xs hover:shadow-md transition-all group flex flex-col justify-between"
+              >
                 <div>
-                  <h4 className="text-base font-bold text-[#0B2A4A] tracking-tight mb-1">
-                    Cost-Conscious Solutions
-                  </h4>
-                  <p className="text-xs sm:text-sm text-[#526478] leading-relaxed max-w-xl">
-                    We work to identify suitable transportation options based on cargo requirements and available services, optimizing logistical expense without compromising handling safety.
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="w-12 h-12 rounded-xl bg-[#EAF4FC] text-[#1261A0] flex items-center justify-center group-hover:scale-105 transition-transform">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <span className="text-xs font-mono font-bold text-slate-400">
+                      {pillar.number}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-[#0B2A4A] tracking-tight mb-2">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#526478] leading-relaxed mb-5">
+                    {pillar.description}
                   </p>
                 </div>
-              </div>
-              <div className="self-end sm:self-center">
-                <span className="text-xs font-mono font-bold text-[#1261A0] bg-white px-3 py-1 rounded-full border border-blue-100">
-                  06
-                </span>
-              </div>
-            </div>
 
-          </div>
-
+                <div className="pt-4 border-t border-slate-200/80">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-[11px] font-semibold text-[#1261A0]">
+                      {pillar.tagline}
+                    </span>
+                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
       </div>

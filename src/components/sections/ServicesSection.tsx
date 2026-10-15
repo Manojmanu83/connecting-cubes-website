@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Truck, Train, Plane, RefreshCw, ArrowRight, CheckCircle2, Shield, AlertCircle } from 'lucide-react';
-
+import { Truck, Train, Plane, Warehouse, CheckCircle2 } from 'lucide-react';
 import Image from 'next/image';
 
 interface ServiceCardData {
@@ -70,21 +69,21 @@ const SERVICES: ServiceCardData[] = [
     modeParam: 'Air',
   },
   {
-    id: 'e2e',
-    tag: 'Single Point of Contact',
-    title: 'End-to-End Logistics',
+    id: 'warehousing',
+    tag: 'Storage & Hub Operations',
+    title: 'Warehousing & Storage',
     description:
-      'From understanding cargo requirements to coordinating transportation and delivery, we help simplify the logistics process through a single point of contact.',
+      'Strategic transit warehousing and regional storage coordination to streamline buffer inventory, staging, and distribution fulfillment across India.',
     features: [
-      'Requirement assessment & feasibility',
-      'Carrier network coordination',
-      'Dispatch milestone tracking',
-      'Dedicated logistics desk support',
+      'Regional inventory consolidation',
+      'Secure transit buffer storage',
+      'Cross-docking & dispatch staging',
+      'Coordinated multi-city distribution',
     ],
-    icon: RefreshCw,
-    image: '/images/coordination.webp',
-    gradient: 'from-[#0B2A4A]/90 to-[#1E88E5]/80',
-    modeParam: 'Not Sure',
+    icon: Warehouse,
+    image: '/images/warehouse.jpg',
+    gradient: 'from-[#0B2A4A]/90 to-[#1261A0]/80',
+    modeParam: 'Warehousing',
   },
 ];
 
@@ -95,14 +94,11 @@ export const ServicesSection: React.FC = () => {
         
         {/* Header */}
         <div className="max-w-3xl mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EAF4FC] text-[#1261A0] text-xs font-bold uppercase tracking-wider mb-3">
-            TRANSPORTATION CAPABILITIES
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight leading-tight">
             Logistics Solutions That Move Your Business Forward
           </h2>
           <p className="mt-3 text-base sm:text-lg text-[#526478] leading-relaxed">
-            Explore transportation and coordination options designed around your shipment requirements across road, rail, and air.
+            Explore transportation and coordination options designed around your shipment requirements across road, rail, air, and warehousing.
           </p>
         </div>
 
@@ -142,7 +138,7 @@ export const ServicesSection: React.FC = () => {
                   </div>
 
                   {/* Body Content */}
-                  <div className="p-5">
+                  <div className="p-5 pb-6">
                     <p className="text-xs sm:text-sm text-[#526478] leading-relaxed mb-5">
                       {service.description}
                     </p>
@@ -160,17 +156,6 @@ export const ServicesSection: React.FC = () => {
                       ))}
                     </div>
                   </div>
-                </div>
-
-                {/* Card Action Link */}
-                <div className="p-5 pt-0">
-                  <a
-                    href="#quote"
-                    className="inline-flex items-center justify-between w-full py-2.5 px-4 rounded-xl bg-[#F7FAFC] hover:bg-[#EAF4FC] text-[#1261A0] font-bold text-xs transition-colors duration-200 border border-slate-100 group-hover:border-[#1261A0]/20"
-                  >
-                    <span>Enquire About {service.title}</span>
-                    <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </a>
                 </div>
               </div>
             );

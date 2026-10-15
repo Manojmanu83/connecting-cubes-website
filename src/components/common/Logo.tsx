@@ -25,11 +25,10 @@ export const Logo: React.FC<LogoProps> = ({
     <div className={`inline-flex items-center select-none ${className}`}>
       {/* Authentic Connecting Cubes Brand Logo from public/images */}
       <div
-        className={`relative flex items-center justify-center transition-transform duration-200 group-hover:scale-[1.02] ${
-          isDarkBg
-            ? 'p-1.5 rounded-lg bg-white/95 shadow-sm'
-            : ''
-        }`}
+        className={`relative flex items-center justify-center transition-transform duration-200 group-hover:scale-[1.02] ${isDarkBg
+          ? 'p-1.5 rounded-lg bg-white/95 shadow-sm'
+          : ''
+          }`}
       >
         <Image
           src="/images/connecting_cube_logo_transparent.png"

@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
-import { Compass, Truck, Train, Plane, CheckCircle2, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Compass, Truck, Train, Plane, ShieldCheck } from 'lucide-react';
 
 interface IllustrativeNode {
   id: string;
@@ -12,7 +11,7 @@ interface IllustrativeNode {
   y: number; // Exact Y coordinate in india_accurate_map.svg coordinate space
 }
 
-// Configurable data structure with documented coordinates matching india_accurate_map.svg (-400 -460 1450 1760)
+// Grounded major-city markers matching india_accurate_map.svg coordinate space (-400 -460 1450 1760)
 const ILLUSTRATIVE_NODES: IllustrativeNode[] = [
   { id: 'delhi', name: 'Delhi NCR', zone: 'North Intermodal', x: 74, y: 43 },
   { id: 'mumbai', name: 'Mumbai', zone: 'West Gateway', x: -185, y: 545 },
@@ -22,18 +21,6 @@ const ILLUSTRATIVE_NODES: IllustrativeNode[] = [
   { id: 'hyderabad', name: 'Hyderabad', zone: 'Central Deccan', x: 110, y: 680 },
   { id: 'kolkata', name: 'Kolkata', zone: 'East Riverine', x: 590, y: 390 },
   { id: 'guwahati', name: 'Guwahati', zone: 'Northeast Gateway', x: 790, y: 190 },
-];
-
-// Documented multi-modal routes between illustrative connectivity hubs
-const ILLUSTRATIVE_ROUTES = [
-  { from: 'delhi', to: 'mumbai' },
-  { from: 'delhi', to: 'kolkata' },
-  { from: 'delhi', to: 'hyderabad' },
-  { from: 'mumbai', to: 'ahmedabad' },
-  { from: 'mumbai', to: 'bengaluru' },
-  { from: 'bengaluru', to: 'chennai' },
-  { from: 'hyderabad', to: 'chennai' },
-  { from: 'kolkata', to: 'guwahati' }, // Explicit connection to Northeast India
 ];
 
 export const CoverageSection: React.FC = () => {
@@ -47,9 +34,6 @@ export const CoverageSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="max-w-3xl mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-sky-300 text-xs font-bold uppercase tracking-wider mb-3 border border-white/10">
-            NETWORK FOOTPRINT
-          </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Pan-India Logistics Connectivity
           </h2>
@@ -85,49 +69,20 @@ export const CoverageSection: React.FC = () => {
                 loading="lazy"
               />
 
-              {/* Exact Coordinate System Overlay SVG (Matching viewBox: -400 -460 1450 1760) */}
+              {/* Grounded City Markers Overlay SVG (Matching viewBox: -400 -460 1450 1760) */}
               <svg
                 viewBox="-400 -460 1450 1760"
                 className="absolute inset-0 w-full h-full pointer-events-none"
                 aria-hidden="true"
               >
-                <defs>
-                  <linearGradient id="routeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#1E88E5" stopOpacity="0.8" />
-                    <stop offset="100%" stopColor="#64B5F6" stopOpacity="0.8" />
-                  </linearGradient>
-                </defs>
-
-                {/* Illustrative Transport Routes Between Major Corridor Interchanges */}
-                {ILLUSTRATIVE_ROUTES.map((route, rIdx) => {
-                  const fromNode = ILLUSTRATIVE_NODES.find((n) => n.id === route.from);
-                  const toNode = ILLUSTRATIVE_NODES.find((n) => n.id === route.to);
-                  if (!fromNode || !toNode) return null;
-
-                  return (
-                    <line
-                      key={rIdx}
-                      x1={fromNode.x}
-                      y1={fromNode.y}
-                      x2={toNode.x}
-                      y2={toNode.y}
-                      stroke="url(#routeGradient)"
-                      strokeWidth="3.5"
-                      strokeDasharray="8 8"
-                      strokeOpacity="0.75"
-                      className="motion-safe:animate-pulse"
-                    />
-                  );
-                })}
-
-                {/* Illustrative Connectivity Nodes in Actual Cartographic Coordinates */}
+                {/* Grounded Major City Markers without connecting lines */}
                 {ILLUSTRATIVE_NODES.map((node) => (
                   <g key={node.id} className="transition-all">
                     {/* Glowing outer pulse marker */}
                     <circle
                       cx={node.x}
                       cy={node.y}
-                      r="16"
+                      r="14"
                       fill="#1E88E5"
                       opacity="0.25"
                       className="motion-safe:animate-ping"
@@ -164,25 +119,19 @@ export const CoverageSection: React.FC = () => {
               </svg>
             </div>
 
-            {/* Illustrative Legend & Mandatory Source Attribution */}
+            {/* Illustrative Legend */}
             <div className="mt-4 pt-3 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-[11px] text-slate-300">
-              <div className="flex items-center gap-3">
-                <span className="flex items-center gap-1.5 text-sky-200">
-                  <span className="w-2 h-2 rounded-full bg-[#1E88E5] inline-block" />
-                  Illustrative Connectivity Points
-                </span>
-                <span className="text-slate-400">|</span>
-                <span className="text-slate-300">
-                  Multi-modal Arterial Corridors
-                </span>
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#1E88E5] inline-block" />
+                <span className="text-sky-200 font-medium">Major Transport Hubs & Connectivity Nodes</span>
               </div>
               <span className="text-[10px] text-slate-400">
-                Map base: Planemad / CC BY-SA 3.0
+                Administrative Map Base
               </span>
             </div>
           </div>
 
-          {/* RIGHT: Confirmed Coverage Details & Verification (Spans 5 cols on lg) */}
+          {/* RIGHT: Confirmed Coverage Details (Spans 5 cols on lg) */}
           <div className="lg:col-span-5 space-y-6">
             
             {/* Stated PIN Code Reach Card */}
@@ -238,17 +187,6 @@ export const CoverageSection: React.FC = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            {/* Action Button */}
-            <div className="pt-2">
-              <a
-                href="#quote"
-                className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#1261A0] hover:bg-[#1E88E5] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.99]"
-              >
-                <span>Verify Route & PIN Feasibility</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
             </div>
 
           </div>

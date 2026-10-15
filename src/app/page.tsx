@@ -7,8 +7,6 @@ import { WhyChooseUsSection } from '@/components/sections/WhyChooseUsSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { CoverageSection } from '@/components/sections/CoverageSection';
 import { CargoInsuranceSection } from '@/components/sections/CargoInsuranceSection';
-import { IndustriesSection } from '@/components/sections/IndustriesSection';
-import { TrackingSection } from '@/components/sections/TrackingSection';
 import { ContactQuoteSection } from '@/components/sections/ContactQuoteSection';
 import { Footer } from '@/components/common/Footer';
 
@@ -41,13 +39,7 @@ export default function HomePage() {
         {/* 7. Cargo Insurance Protection */}
         <CargoInsuranceSection />
 
-        {/* 8. Industries & Sectors Served */}
-        <IndustriesSection />
-
-        {/* 9. Shipment Tracking Desk */}
-        <TrackingSection />
-
-        {/* 10. Quotation & Requirement Consultation */}
+        {/* 8. Quotation & Requirement Consultation */}
         <ContactQuoteSection />
       </main>
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { ShieldCheck, ArrowRight, FileCheck, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, FileCheck, CheckCircle2 } from 'lucide-react';
 
 export const CargoInsuranceSection: React.FC = () => {
   return (
@@ -15,10 +15,6 @@ export const CargoInsuranceSection: React.FC = () => {
             
             {/* Copy & Details (Spans 7 cols) */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-[#1261A0] text-xs font-bold uppercase tracking-wider border border-[#1261A0]/10">
-                RISK MITIGATION SUPPORT
-              </div>
-
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B2A4A] tracking-tight leading-tight">
                 Protect Your Cargo. Move With Confidence.
               </h2>
@@ -53,20 +49,6 @@ export const CargoInsuranceSection: React.FC = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-
-              {/* Action Button & Honest Subtitle */}
-              <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-4">
-                <a
-                  href="#quote"
-                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1261A0] hover:bg-[#0E4E82] text-white text-sm font-bold shadow-sm hover:shadow-md transition-all duration-200 active:scale-[0.99]"
-                >
-                  <span>Enquire About Cargo Insurance</span>
-                  <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </a>
-                <span className="text-xs text-[#526478]">
-                  Available as an optional add-on during booking.
-                </span>
               </div>
             </div>
 

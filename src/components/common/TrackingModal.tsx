@@ -7,12 +7,14 @@ interface TrackingModalProps {
   isOpen: boolean;
   onClose: () => void;
   consignmentNumber: string;
+  transporter?: string;
 }
 
 export const TrackingModal: React.FC<TrackingModalProps> = ({
   isOpen,
   onClose,
   consignmentNumber,
+  transporter,
 }) => {
   if (!isOpen) return null;
 
@@ -41,7 +43,7 @@ export const TrackingModal: React.FC<TrackingModalProps> = ({
               Shipment Tracking Lookup
             </h3>
             <p className="text-xs text-slate-500 font-medium">
-              Consignment Reference: {consignmentNumber || 'Not specified'}
+              {transporter ? `${transporter} • ` : ''}Ref: {consignmentNumber || 'Not specified'}
             </p>
           </div>
         </div>
