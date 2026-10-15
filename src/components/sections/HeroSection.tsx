@@ -13,11 +13,13 @@ import {
   Compass,
 } from 'lucide-react';
 import { TrackingModal } from '../common/TrackingModal';
+import { PinFeasibilityModal } from '../common/PinFeasibilityModal';
 
 export const HeroSection: React.FC = () => {
   const [selectedTransporter, setSelectedTransporter] = useState('');
   const [consignmentInput, setConsignmentInput] = useState('');
   const [trackingModalOpen, setTrackingModalOpen] = useState(false);
+  const [pinModalOpen, setPinModalOpen] = useState(false);
   const [inputError, setInputError] = useState('');
 
   const TRANSPORTERS = [
@@ -171,22 +173,23 @@ export const HeroSection: React.FC = () => {
               End-to-end logistics coordination across India, connecting businesses with transportation solutions across road, rail and air.
             </p>
 
-            {/* Call to Actions: Request a Quote & Verify Route & Pin Feasibility */}
+            {/* Call to Actions: Explore Our Services & Verify Route & PIN Feasibility */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
               <a
-                href="#quote"
+                href="#services"
                 className="btn-interactive inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-[#1261A0] hover:bg-[#1E88E5] text-white text-base font-bold shadow-lg hover:shadow-xl transition-all"
               >
-                <span>Request a Quote</span>
+                <span>Explore Our Services</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
 
-              <a
-                href="#coverage"
-                className="btn-interactive inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-base font-bold border border-white/20 hover:border-white/40 backdrop-blur-md transition-all"
+              <button
+                type="button"
+                onClick={() => setPinModalOpen(true)}
+                className="btn-interactive inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-base font-bold border border-white/20 hover:border-white/40 backdrop-blur-md transition-all cursor-pointer"
               >
-                <span>Verify Route & Pin Feasibility</span>
-              </a>
+                <span>Verify Route & PIN Feasibility</span>
+              </button>
             </div>
 
             {/* Restrained Trust Points */}
@@ -253,8 +256,12 @@ export const HeroSection: React.FC = () => {
                 {/* 1. TRACK YOUR SHIPMENT WITH TRANSPORTER SELECTION */}
                 <div className="mb-4">
                   <div className="flex items-center justify-between mb-2">
-                    <h2 className="text-xs font-extrabold uppercase tracking-wider text-[#0B2A4A] flex items-center gap-1.5">
+                    {/* <h2 className="text-xs font-extrabold uppercase tracking-wider text-[#0B2A4A] flex items-center gap-1.5">
                       <Search className="w-3.5 h-3.5 text-[#1261A0]" />
+                      TRACK YOUR SHIPMENT
+                    </h2> */}
+                    <h2 className="text-sm font-bold uppercase tracking-widest text-[#0B2A4A] flex items-center gap-2 mb-4">
+                      <Search className="w-4 h-4 text-[#1261A0]" />
                       TRACK YOUR SHIPMENT
                     </h2>
                     <span className="text-[10px] text-slate-400 font-medium">
@@ -262,22 +269,25 @@ export const HeroSection: React.FC = () => {
                     </span>
                   </div>
 
-                  <form onSubmit={handleTrackSubmit} className="space-y-2.5">
-                    {/* Transporter Dropdown */}
+                  <form onSubmit={handleTrackSubmit} className="space-y-3">
+                    {/* Transporter Dropdown with Accessible Label */}
                     <div>
-                      <label htmlFor="transporter-select" className="sr-only">
-                        Select Transporter
+                      <label
+                        htmlFor="hero-transporter-select"
+                        className="block text-[11px] font-bold uppercase tracking-wider text-[#0B2A4A] mb-1.5"
+                      >
+                        Select Transporter Partner <span className="text-red-500">*</span>
                       </label>
                       <select
-                        id="transporter-select"
+                        id="hero-transporter-select"
                         value={selectedTransporter}
                         onChange={(e) => {
                           setSelectedTransporter(e.target.value);
                           if (inputError) setInputError('');
                         }}
-                        className="w-full px-3 py-2 text-xs rounded-lg border border-slate-300 bg-white text-slate-800 focus:border-[#1261A0] focus:ring-1 focus:ring-[#1261A0] outline-none transition-all cursor-pointer"
+                        className="w-full px-3 py-2.5 text-xs sm:text-sm rounded-lg border border-slate-300 bg-white text-slate-800 focus:border-[#1261A0] focus:ring-1 focus:ring-[#1261A0] outline-none transition-all cursor-pointer"
                       >
-                        <option value="">-- Select Transporter Network --</option>
+                        <option value="">-- Choose Transporter Network --</option>
                         {TRANSPORTERS.map((t) => (
                           <option key={t} value={t}>
                             {t}
@@ -287,42 +297,51 @@ export const HeroSection: React.FC = () => {
                     </div>
 
                     {/* Consignment Number Input - Disabled until Transporter Selected */}
-                    <div className="relative">
-                      <input
-                        type="text"
-                        disabled={!selectedTransporter}
-                        value={consignmentInput}
-                        onChange={(e) => {
-                          setConsignmentInput(e.target.value);
-                          if (inputError) setInputError('');
-                        }}
-                        placeholder={
-                          selectedTransporter
-                            ? 'Enter consignment or LR number...'
-                            : 'Select a transporter above first...'
-                        }
-                        className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border transition-all outline-none ${!selectedTransporter
-                          ? 'bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed placeholder-slate-400'
-                          : 'bg-white border-slate-300 text-slate-900 focus:border-[#1261A0] focus:ring-1 focus:ring-[#1261A0] placeholder-slate-400'
-                          }`}
-                      />
+                    <div>
+                      <label
+                        htmlFor="hero-consignment-input"
+                        className="block text-[11px] font-bold uppercase tracking-wider text-[#0B2A4A] mb-1.5"
+                      >
+                        Consignment / Docket / LR Number <span className="text-red-500">*</span>
+                      </label>
+                      <div className="relative">
+                        <input
+                          id="hero-consignment-input"
+                          type="text"
+                          disabled={!selectedTransporter}
+                          value={consignmentInput}
+                          onChange={(e) => {
+                            setConsignmentInput(e.target.value);
+                            if (inputError) setInputError('');
+                          }}
+                          placeholder={
+                            selectedTransporter
+                              ? 'Enter consignment or LR number...'
+                              : 'Select a transporter partner above first...'
+                          }
+                          className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-lg border transition-all outline-none ${!selectedTransporter
+                            ? 'bg-slate-50 border-slate-200 text-slate-400 cursor-not-allowed placeholder-slate-400'
+                            : 'bg-white border-slate-300 text-slate-900 focus:border-[#1261A0] focus:ring-1 focus:ring-[#1261A0] placeholder-slate-400'
+                            }`}
+                        />
+                      </div>
                     </div>
 
                     {inputError && (
-                      <p className="text-[11px] text-red-600 font-medium">{inputError}</p>
+                      <p className="text-[11px] text-red-600 font-semibold">{inputError}</p>
                     )}
 
-                    {/* Track Action */}
+                    {/* Track Action - Disabled until both fields valid */}
                     <button
                       type="submit"
                       disabled={!selectedTransporter || !consignmentInput.trim()}
                       className={`btn-interactive w-full py-2.5 px-4 rounded-lg text-xs font-bold uppercase tracking-wide transition-all flex items-center justify-center gap-1.5 shadow-sm ${!selectedTransporter || !consignmentInput.trim()
-                        ? 'bg-slate-300 text-slate-500 cursor-not-allowed'
+                        ? 'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-200'
                         : 'bg-[#0B2A4A] hover:bg-[#1261A0] text-white cursor-pointer'
                         }`}
                     >
                       <Search className="w-3.5 h-3.5" />
-                      <span>Track Consignment</span>
+                      <span>Track Shipment</span>
                     </button>
                   </form>
                 </div>
@@ -369,6 +388,12 @@ export const HeroSection: React.FC = () => {
         onClose={() => setTrackingModalOpen(false)}
         consignmentNumber={consignmentInput}
         transporter={selectedTransporter}
+      />
+
+      {/* Responsible PIN Code Feasibility Modal */}
+      <PinFeasibilityModal
+        isOpen={pinModalOpen}
+        onClose={() => setPinModalOpen(false)}
       />
     </section>
   );

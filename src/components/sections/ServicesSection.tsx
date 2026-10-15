@@ -89,7 +89,7 @@ const SERVICES: ServiceCardData[] = [
 
 export const ServicesSection: React.FC = () => {
   return (
-    <section id="services" className="py-16 lg:py-24 bg-[#F7FAFC] relative">
+    <section id="services" className="py-16 lg:py-24 bg-[#F7FAFC] relative scroll-mt-20 lg:scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

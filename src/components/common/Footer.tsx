@@ -21,8 +21,8 @@ export const Footer: React.FC = () => {
           
           {/* Col 1: Brand & Overview (Spans 4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <Link href="#home" className="inline-block">
-              <Logo variant="dark" size="md" />
+            <Link href="#home" className="inline-block" aria-label="Connecting Cubes Home">
+              <Logo variant="dark" size="lg" />
             </Link>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm">
               Connecting Cubes helps businesses coordinate end-to-end transportation requirements through a reliable network of transportation providers across India. Established in 2019.

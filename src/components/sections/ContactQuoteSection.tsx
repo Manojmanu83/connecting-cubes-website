@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Send,
   CheckCircle2,
@@ -50,6 +50,23 @@ export const ContactQuoteSection: React.FC = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [submittedData, setSubmittedData] = useState<FormData | null>(null);
+
+  // Listen for PIN code pre-fill from PIN Feasibility check modal
+  useEffect(() => {
+    const handlePrefillPin = (e: Event) => {
+      const customEvent = e as CustomEvent<{ pin: string }>;
+      if (customEvent.detail?.pin) {
+        setFormData((prev) => ({
+          ...prev,
+          deliveryLocation: prev.deliveryLocation
+            ? prev.deliveryLocation
+            : `PIN ${customEvent.detail.pin}`,
+        }));
+      }
+    };
+    window.addEventListener('cc-prefill-pin', handlePrefillPin);
+    return () => window.removeEventListener('cc-prefill-pin', handlePrefillPin);
+  }, []);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
