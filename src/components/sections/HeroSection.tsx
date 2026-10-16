@@ -18,31 +18,75 @@ import { PinFeasibilityModal } from '../common/PinFeasibilityModal';
 export const HeroSection: React.FC = () => {
   const [selectedTransporter, setSelectedTransporter] = useState('');
   const [consignmentInput, setConsignmentInput] = useState('');
-  const [trackingModalOpen, setTrackingModalOpen] = useState(false);
+  // const [trackingModalOpen, setTrackingModalOpen] = useState(false);
   const [pinModalOpen, setPinModalOpen] = useState(false);
   const [inputError, setInputError] = useState('');
 
   const TRANSPORTERS = [
+    'RIVIGO / MAHINDRA',
+    'DP WORLD',
     'DELHIVERY',
     'XPRESSBEES',
-    'RIVIGO',
-    'DP WORLD',
-    'MAHINDRA',
+    'MOVIN',
     'GATI',
   ];
 
   const handleTrackSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!selectedTransporter) {
       setInputError('Please select a transporter network first.');
       return;
     }
-    if (!consignmentInput.trim()) {
+
+    const consignmentNumber = consignmentInput.trim();
+
+    if (!consignmentNumber) {
       setInputError('Please enter a valid consignment reference or docket number.');
       return;
     }
+
+    const transporter = selectedTransporter.trim().toUpperCase();
+    let trackingUrl: string;
+
+    switch (transporter) {
+      case 'RIVIGO / MAHINDRA':
+        trackingUrl =
+          `https://zoom-ops.rivigo.com/#/trackconsignment/` +
+          `${encodeURIComponent(consignmentNumber)}?redirectedFromRivigo=true`;
+        break;
+
+      case 'DP WORLD':
+        trackingUrl =
+          `https://www.logistics.dpworld.com/tracking/in/express?shipment=` +
+          encodeURIComponent(consignmentNumber);
+        break;
+
+      case 'DELHIVERY':
+        trackingUrl = 'https://www.delhivery.com/track-v2/lr/' +
+          encodeURIComponent(consignmentNumber);
+        break;
+
+      case 'XPRESSBEES':
+        trackingUrl = 'https://www.xpressbees.com/track';
+        break;
+
+      case 'MOVIN':
+        trackingUrl = 'https://www.movin.in/shipment/track';
+        break;
+
+      case 'GATI':
+        trackingUrl = 'https://www.gatikwe.com';
+        break;
+
+      default:
+        setInputError('Tracking is not available for the selected transporter.');
+        return;
+    }
+
     setInputError('');
-    setTrackingModalOpen(true);
+
+    window.open(trackingUrl, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -188,7 +232,7 @@ export const HeroSection: React.FC = () => {
                 onClick={() => setPinModalOpen(true)}
                 className="btn-interactive inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-base font-bold border border-white/20 hover:border-white/40 backdrop-blur-md transition-all cursor-pointer"
               >
-                <span>Verify Route & PIN Feasibility</span>
+                <span>Check Pincode</span>
               </button>
             </div>
 
@@ -383,12 +427,12 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Shipment Tracking Lookup Modal */}
-      <TrackingModal
+      {/* <TrackingModal
         isOpen={trackingModalOpen}
         onClose={() => setTrackingModalOpen(false)}
         consignmentNumber={consignmentInput}
         transporter={selectedTransporter}
-      />
+      /> */}
 
       {/* Responsible PIN Code Feasibility Modal */}
       <PinFeasibilityModal

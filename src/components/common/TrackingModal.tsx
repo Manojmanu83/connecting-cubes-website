@@ -20,10 +20,21 @@ interface TrackingModalProps {
 }
 
 // Verified official tracking destinations for partner networks
+// Official transporter tracking destinations
 const TRANSPORTER_PORTALS: Record<
   string,
-  { name: string; url: string; canDirectTrack: boolean; note?: string }
+  { name: string; url: string; canDirectTrack: boolean }
 > = {
+  'RIVIGO / MAHINDRA': {
+    name: 'Rivigo / Mahindra Logistics',
+    url: 'https://zoom-ops.rivigo.com/#/trackconsignment',
+    canDirectTrack: true,
+  },
+  'DP WORLD': {
+    name: 'DP World Multimodal',
+    url: 'https://www.dpworld.com',
+    canDirectTrack: true,
+  },
   DELHIVERY: {
     name: 'Delhivery Surface & Express',
     url: 'https://www.delhivery.com/tracking',
@@ -34,24 +45,14 @@ const TRANSPORTER_PORTALS: Record<
     url: 'https://www.xpressbees.com/track',
     canDirectTrack: true,
   },
+  MOVIN: {
+    name: 'MOVIN Express',
+    url: 'https://www.movin.in',
+    canDirectTrack: true,
+  },
   GATI: {
     name: 'Gati KWE Express',
     url: 'https://www.gatikwe.com',
-    canDirectTrack: true,
-  },
-  RIVIGO: {
-    name: 'Rivigo Relay Freight',
-    url: 'https://www.rivigo.com',
-    canDirectTrack: true,
-  },
-  'DP WORLD': {
-    name: 'DP World Multimodal',
-    url: 'https://www.dpworld.com',
-    canDirectTrack: true,
-  },
-  MAHINDRA: {
-    name: 'Mahindra Logistics',
-    url: 'https://mahindralogistics.com',
     canDirectTrack: true,
   },
 };
@@ -64,7 +65,19 @@ export const TrackingModal: React.FC<TrackingModalProps> = ({
 }) => {
   if (!isOpen) return null;
 
-  const activeTransporter = transporter ? TRANSPORTER_PORTALS[transporter.toUpperCase()] : null;
+  const transporterKey = transporter?.trim().toUpperCase();
+
+  const activeTransporter = transporterKey
+    ? TRANSPORTER_PORTALS[transporterKey]
+    : null;
+
+  const trackingUrl =
+    transporterKey === 'RIVIGO / MAHINDRA'
+      ? `${TRANSPORTER_PORTALS['RIVIGO / MAHINDRA'].url}/${encodeURIComponent(
+        consignmentNumber.trim()
+      )}?redirectedFromRivigo=true`
+      : activeTransporter?.url;
+
 
   return (
     <div
@@ -151,14 +164,14 @@ export const TrackingModal: React.FC<TrackingModalProps> = ({
 
         {/* Action Buttons */}
         <div className="flex flex-col gap-2.5">
-          {activeTransporter && activeTransporter.canDirectTrack && (
+          {activeTransporter?.canDirectTrack && trackingUrl && (
             <a
-              href={activeTransporter.url}
+              href={trackingUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-interactive w-full py-2.5 px-4 rounded-xl bg-[#0B2A4A] hover:bg-[#1261A0] text-white text-xs font-bold uppercase tracking-wide transition-colors flex items-center justify-center gap-2 shadow-sm text-center"
             >
-              <span>Open {transporter} Verified Portal</span>
+              <span>Open {activeTransporter.name} Tracking Portal</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}
